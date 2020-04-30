@@ -27,7 +27,8 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         HttpSession session = request.getSession();
-        if(session.getAttribute("ADMIN_USER")==null){
+        System.out.println("request.getRequestURI().indexOf(\"swagger-ui.html\")"+request.getRequestURI().indexOf("swagger-ui.html"));
+        if(request.getRequestURI().indexOf("swagger-ui.html")<=0 && session.getAttribute("ADMIN_USER")==null){
             // 没有登录
             response.sendRedirect(request.getContextPath()+"/login.html");
         }else{

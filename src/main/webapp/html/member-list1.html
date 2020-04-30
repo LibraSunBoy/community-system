@@ -38,36 +38,35 @@
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input" autocomplete="off" placeholder="截止日" name="end" id="end"></div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="username" placeholder="请输入手机号" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                         <i class="layui-icon">&#xe615;</i></button>
                                 </div>
                             </form>
                         </div>
-                        <div class="layui-card-body ">
+                        <div class="layui-card-body">
                             <table class="layui-table" lay-data="{url:requestUrl+'/member/list',method:'get',page:true,limit:20,toolbar: '#toolbarDemo',id:'test'}">
                                 <thead>
                                     <tr>
-<!--                                        <th lay-data="{type:'checkbox'}">ID</th>-->
-<!--                                        <th lay-data="{field:'id', width:80, sort: true}">ID</th>-->
-<!--                                        <th lay-data="{field:'username', width:120, sort: true, edit: 'text'}">用户名</th>-->
-<!--                                        <th lay-data="{field:'email', edit: 'text', minWidth: 150}">邮箱</th>-->
-<!--                                        <th lay-data="{field:'sex', width:80,templet: '#switchTpl'}">性别</th>-->
-<!--                                        <th lay-data="{field:'city', edit: 'text', minWidth: 100}">城市</th>-->
-<!--                                        <th lay-data="{field:'experience', sort: true, edit: 'text'}">积分</th>-->
-<!--                                        <th lay-data="{field:'dw_xinzhi',templet: function(d){ return d.dw_xinzhi.titel;}}">学校</th></tr>-->
                                         <th lay-data="{type:'checkbox',width:80}">ID</th>
                                         <th lay-data="{field:'id',width:80, sort: true}">ID</th>
-                                        <th lay-data="{field:'account'}">用户名</th>
-                                        <th lay-data="{field:'role', edit: 'text'}">角色</th>
-                                        <th lay-data="{field:'status', templet: '#status'}">状态</th>
+                                        <th lay-data="{field:'account'}">登录账号</th>
+                                        <th lay-data="{field:'nickName'}">昵称</th>
+                                        <th lay-data="{field:'gender',templet: '#status'}">性别</th>
+                                        <th lay-data="{field:'email'}">邮箱</th>
+                                        <th lay-data="{field:'mobile'}">手机号</th>
+                                        <th lay-data="{field:'type',templet: '#type'}">类别</th>
+                                        <th lay-data="{field:'province'}">省</th>
+                                        <th lay-data="{field:'city'}">市</th>
+                                        <th lay-data="{field:'area'}">区</th>
+                                        <th lay-data="{field:'street'}">街道</th>
+                                        <th lay-data="{field:'floor'}">楼层</th>
+                                        <th lay-data="{field:'room'}">房间</th>
+                                        <th lay-data="{field:'integral'}">积分</th>
                                         <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
-                                        <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}"></th></tr>
+                                        <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}">操作</th>
+                                    </tr>
                                 </thead>
                             </table>
                         </div>
@@ -77,10 +76,6 @@
         </div>
     </body>
     <script type="text/html" id="handleBar">
-        <!--        <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a>-->
-        <!--        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
-        <!--        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
-
         <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
             <i class="layui-icon">&#xe601;</i>
         </a>
@@ -99,18 +94,16 @@
         </div >
     </script>
     <script type="text/html" id="status">
-        {{#  if(d.status == 1){ }}
-        可用
-        {{#  } else { }}
-        禁用
+        {{#  if(d.status == 0){ }}
+        保密
+        {{#  } else if(d.status == 1){ }}
+        男
+        {{#  } else{ }}
+        女
         {{#  } }}
     </script>
-    <script type="text/html" id="switchTpl">
-        <!-- 这里的checked的状态只是演示 -->
-        <input type = "checkbox" name = "sex" value = "{{d.id}}" lay-skin = "switch"lay-text = "女|男" lay-filter = "sexDemo" {{ d.id == 10003 ? 'checked': ''}} >
-    </script>
-    <script>layui.use('laydate',
-        function() {
+    <script>
+        layui.use('laydate',function() {
             var laydate = layui.laydate;
 
             //执行一个laydate实例
@@ -123,8 +116,10 @@
                 elem: '#end' //指定元素
             });
 
-        });</script>
-    <script>layui.use('table',
+        });
+    </script>
+    <script>
+        layui.use('table',
         function() {
             var table = layui.table;
 
@@ -158,11 +153,5 @@
                 };
             });
         });</script>
-    <script>var _hmt = _hmt || []; (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();</script>
 
 </html>
