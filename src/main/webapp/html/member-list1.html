@@ -65,7 +65,7 @@
                                         <th lay-data="{field:'room'}">房间</th>
                                         <th lay-data="{field:'integral'}">积分</th>
                                         <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
-                                        <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}">操作</th>
+                                        <th lay-data="{fixed: 'right', width:150, toolbar: '#handleBar'}">操作</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -76,9 +76,6 @@
         </div>
     </body>
     <script type="text/html" id="handleBar">
-        <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-            <i class="layui-icon">&#xe601;</i>
-        </a>
         <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
             <i class="layui-icon">&#xe642;</i>
         </a>
