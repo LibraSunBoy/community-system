@@ -59,6 +59,9 @@ public class Result<T> implements Serializable {
         this.count = count;
     }
 
+    public Result() {
+    }
+
     public Result(Integer code, String msg, T data) {
         this.code = code;
         this.msg = msg;
@@ -76,5 +79,18 @@ public class Result<T> implements Serializable {
         this.msg = "";
         this.count=count;
         this.data = data;
+    }
+
+    public Result success(T data) {
+        this.code = CustomException.CodeEnum.OK.getCode();
+        this.msg =  CustomException.CodeEnum.OK.getMsg();
+        this.data = data;
+        return this;
+    }
+
+    public Result success() {
+        this.code = CustomException.CodeEnum.OK.getCode();
+        this.msg =  CustomException.CodeEnum.OK.getMsg();
+        return this;
     }
 }

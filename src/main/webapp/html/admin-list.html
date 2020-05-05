@@ -55,7 +55,7 @@
                                     <th lay-data="{field:'account'}">用户名</th>
                                     <th lay-data="{field:'status', templet: '#status'}">状态</th>
                                     <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
-                                    <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}"></th>
+                                    <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}">操作</th>
                                 </tr>
                               </thead>
                             </table>
@@ -74,8 +74,8 @@
         <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
           <i class="layui-icon">&#xe642;</i>
         </a>
-        <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-          <i class="layui-icon">&#xe640;</i>
+        <a title="删除" onclick="member_del('{{d.id}}')" href="javascript:;">
+            <i class="layui-icon">&#xe640;</i>
         </a>
     </script>
     <script>
@@ -125,25 +125,63 @@
       }
 
       /*用户-删除*/
-      function member_del(obj,id){
-          layer.confirm('确认要删除吗？',function(index){
+      function member_del(id){
+          layer.confirm('确认要删除吗？',function(){
+              $ = layui.jquery;
               //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+              $.ajax({
+                  url: requestUrl+"/unit/remove",
+                  type: "post",
+                  data: {id:id},
+                  dataType: "json",
+                  success: function (result) {
+                      if (result.code == 200) {
+                          layer.alert("删除成功", {
+                                  icon: 1
+                              },
+                              function() {
+                                  location.reload();
+                              });
+                      } else {
+                          alert(result.msg);
+                      }
+                  }
+              })
           });
       }
 
 
 
-      function delAll (argument) {
-
-        var data = tableCheck.getData();
-
-        layer.confirm('确认要删除吗？'+data,function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
+      function delAll () {
+          layer.confirm('确认要删除吗？',function(){
+              var table = layui.table;
+              var tableCheck = table.checkStatus('admin');
+              var data = tableCheck.data;
+              var arr = [];
+              for(var i = 0;i<data.length;i++){
+                  arr.push(data[i].id);
+              }
+              $ = layui.jquery;
+              //发异步删除数据
+              $.ajax({
+                  url: requestUrl+"/unit/removeList",
+                  type: "post",
+                  data: {"id":arr},
+                  dataType: "json",
+                  success: function (result) {
+                      if (result.code == 200) {
+                          layer.alert("删除成功", {
+                                  icon: 1
+                              },
+                              function() {
+                                  location.reload();
+                              });
+                      } else {
+                          alert(result.msg);
+                      }
+                  }
+              })
+          });
       }
     </script>
 </html>
