@@ -5,10 +5,7 @@ import cn.com.service.TrashService;
 import cn.com.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,4 +21,27 @@ public class TrashController {
         Result<List<Trash>> list = trashService.query(pageNum, pageSize);
         return list;
     }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Result add(Trash trash){
+        trashService.add(trash);
+        return new Result<>().success();
+    }
+
+
+    @PostMapping("/remove")
+    @ResponseBody
+    public Result remove(Integer id){
+        trashService.remove(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/removeList")
+    @ResponseBody
+    public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
+        trashService.removeList(id);
+        return new Result<>().success();
+    }
+
 }

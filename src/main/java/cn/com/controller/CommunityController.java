@@ -44,4 +44,18 @@ public class CommunityController {
         communityService.add(community);
         return new Result<>().success();
     }
+
+    @PostMapping("/remove")
+    @ResponseBody
+    public Result remove(Integer id){
+        communityService.remove(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/removeList")
+    @ResponseBody
+    public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
+        communityService.removeList(id);
+        return new Result<>().success();
+    }
 }

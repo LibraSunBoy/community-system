@@ -19,4 +19,17 @@ public interface TrashTypeService {
      * @param trashType
      */
     void add(TrashType trashType);
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    void remove(Integer id);
+
+    /**
+     * 多个删除
+     * @param id
+     */
+    void removeList(List<Integer> id);
+
 }

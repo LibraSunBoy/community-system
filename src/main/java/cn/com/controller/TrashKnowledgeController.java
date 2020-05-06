@@ -5,10 +5,7 @@ import cn.com.service.TrashKnowledgeService;
 import cn.com.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +23,26 @@ public class TrashKnowledgeController {
         Result<List<TrashKnowledge>> list = trashKnowledgeService.query(pageNum, pageSize);
         return list;
     }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public Result add(TrashKnowledge trashKnowledge){
+        trashKnowledgeService.add(trashKnowledge);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/remove")
+    @ResponseBody
+    public Result remove(Integer id){
+        trashKnowledgeService.remove(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/removeList")
+    @ResponseBody
+    public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
+        trashKnowledgeService.removeList(id);
+        return new Result<>().success();
+    }
+
 }

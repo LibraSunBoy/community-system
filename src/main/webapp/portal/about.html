@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>社区垃圾分类与回收预测系统设计与实现</title>
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/about.css" />
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_834685_1feh8s3rv5u.css" />
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/unslider.min.js"></script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="container">
+				<a class="logo" href="index.html">
+					<img src="img/logo.png" />
+				</a>
+				<ul class="navigate cl">
+					<li class="">
+						<a href="index.html">网站首页</a>
+					</li>
+					<li class="">
+						<a href="Classify_List.html">分类查询</a>
+					</li>
+					<li class="selected">
+						<a href="about.html">关于我们</a>
+					</li>
+					<li class="">
+						<a href="user_info.html">用户中心</a>
+					</li>
+				</ul>
+				<div class="login_right">
+                    <div>
+                        <a href="login.html">登录</a>  
+                        <span>/</span>
+                        <a href="register.html">注册</a>
+                    </div>
+               </div>				
+			</div>
+		</header>
+		<div class="banner">
+			<div class="container">
+				<img  class="banner_img"  src="img/home_banner4.png" />
+			</div>			
+		</div>		
+		<!--关于我们-->
+		<div class="about_body">
+			<div class="container">
+				<div class="company">
+					<div class="company_title">
+						<h1 class="caption">
+                            —— 关于我们 ——
+                            <br>Introduce Us
+                        </h1>
+					</div>
+					<div class="study_body">
+			<p>
+				让垃圾自动分类
+
+ 
+
+近期垃圾分类成为了一个热门话题，原来直接一次性扔掉的垃圾，现在都需要分门别类进行投放。从今年7月1日起，新的《上海市生活垃圾管理条例》正式开始施行，号称史上最严的垃圾分类就要来了。我们以后在扔垃圾前都要先将垃圾仔细分成可回收物、有害垃圾、湿垃圾和干垃圾四个类别，如果分错还会被罚款。
+
+
+垃圾分类可以更好地保护我们的环境卫生，为了让大家能够正确对垃圾进行分类，官方发布了垃圾分类指南，列举了每种类别对应的常见垃圾，大家可以对照着进行分类投放。此外，脑洞大开的网友们也另辟蹊径，提供了各种有意思的分类思路。
+
+			</p>
+			<img src="" />
+			<p>在日常生活中，每个类别的垃圾往往包含了各式各样的内容，人们在分类投放的时候难免会出现偏差，这个时候如果有一个分类神器对垃圾拍个照就能告诉我们是什么类别就好了。
+
+
+当前人工智能飞速发展，我们能否利用AI技术来对垃圾自动分类，实现上面提到的设想呢？为了回答这个问题，在今天的文章中，我们将从人工智能的角度出发，尝试利用深度学习技术来构建一个垃圾自动分类器，同时也会进一步介绍AI垃圾分类遇到的挑战和一些思考。
+
+ 
+
+“垃圾”图像数据准备
+
+ 
+
+为了实现一个理想的垃圾自动分类器，需要有一个已经分好类别的“垃圾”图像数据集作为训练的基础。然而当前并没有这样一个可以直接使用的数据集，所以我们首先自己动手收集海量的“垃圾”图像并为每张图像标注上相应的类别。
+
+
+数据集的收集一直是一件耗时耗力的工作，为了快速便捷地完成“垃圾”图像数据集的收集，我们依据官方发布的垃圾分类指南上每一类所包含的垃圾名称，通过在百度图片上爬取名称对应的图像来实现。官方发布的垃圾分类指南如下图所
+————————————————
+</p>
+		</div>
+				</div>
+
+			</div>
+		</div>
+		<
+
+		
+		<div class="footer">
+			<div class="container">
+				<div class="f_top">
+					<ul>
+						<li>
+							<a href="about.html">关于我们</a>
+						</li>
+						<li>
+							<a href="about.html">扩展知识</a>
+						</li>
+						<li>
+							<a href="about.html">
+								联系我们
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							查看更多
+						    </a>
+						</li>
+					</ul>
+				</div>
+				<div class="f_content">
+					<ul>
+						<li>
+							<a href="#">可回收垃圾</a>
+						</li>
+						<li>
+							<a href="#">有害垃圾</a>
+						</li>
+						<li>
+							<a href="#">干垃圾</a>
+						</li>
+						<li>
+							<a href="#">湿垃圾</a>
+						</li>
+						<li>
+							<a href="#">大件垃圾</a>
+						</li>
+						<li>
+							<a href="#">建筑垃圾</a>
+						</li>
+						<li>
+							<a href="#">合作与友情链接</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+		<div class="footer_extra">
+			<div class="container">
+				<div class="f_bottom">
+					<p> 社区垃圾分类与回收预测系统设计与实现版权所有 ICP备123456</p>
+					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
+			</div>
+			</div>
+			
+		</div>
+
+	</body>
+
+</html>

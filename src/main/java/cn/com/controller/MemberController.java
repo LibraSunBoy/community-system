@@ -47,4 +47,18 @@ public class MemberController {
         Result<List<Member>> list = memberService.query(pageNum, pageSize, account);
         return list;
     }
+
+    @PostMapping("/remove")
+    @ResponseBody
+    public Result remove(Integer id){
+        memberService.remove(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/removeList")
+    @ResponseBody
+    public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
+        memberService.removeList(id);
+        return new Result<>().success();
+    }
 }

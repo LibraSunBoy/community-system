@@ -50,4 +50,18 @@ public class AdminController {
         Result<List<Admin>> list = adminService.query(pageNum, pageSize, account);
         return list;
     }
+
+    @PostMapping("/remove")
+    @ResponseBody
+    public Result remove(Integer id){
+        adminService.remove(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/removeList")
+    @ResponseBody
+    public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
+        adminService.removeList(id);
+        return new Result<>().success();
+    }
 }

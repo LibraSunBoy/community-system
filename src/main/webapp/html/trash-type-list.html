@@ -44,7 +44,7 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','./trash-type-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                    <button class="layui-btn" onclick="xadmin.open('添加','./trash-type-add.html',600,400)"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table" lay-data="{url:requestUrl+'/trashType/list',method:'get',page:true,limit:20,id:'admin'}">
@@ -124,7 +124,7 @@
             $ = layui.jquery;
             //发异步删除数据
             $.ajax({
-                url: requestUrl+"/unit/remove",
+                url: requestUrl+"/trashType/remove",
                 type: "post",
                 data: {id:id},
                 dataType: "json",
@@ -158,7 +158,7 @@
             $ = layui.jquery;
             //发异步删除数据
             $.ajax({
-                url: requestUrl+"/unit/removeList",
+                url: requestUrl+"/trashType/removeList",
                 type: "post",
                 data: {"id":arr},
                 dataType: "json",

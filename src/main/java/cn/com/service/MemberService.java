@@ -40,4 +40,16 @@ public interface MemberService {
      * @return
      */
     Result<List<Member>> query(Integer pageNum, Integer pageSize, String account);
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    void remove(Integer id);
+
+    /**
+     * 多个删除
+     * @param id
+     */
+    void removeList(List<Integer> id);
 }

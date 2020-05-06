@@ -69,4 +69,14 @@ public class AdminServiceImpl implements AdminService {
         List<Admin> userList = adminMapper.selectByExample(example);
         return new Result<>(userList.size(),userList);
     }
+
+    @Override
+    public void remove(Integer id) {
+        adminMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
+    }
 }

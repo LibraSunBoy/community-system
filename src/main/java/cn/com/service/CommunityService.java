@@ -32,4 +32,16 @@ public interface CommunityService {
      * @param community
      */
     void add(Community community);
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    void remove(Integer id);
+
+    /**
+     * 多个删除
+     * @param id
+     */
+    void removeList(List<Integer> id);
 }

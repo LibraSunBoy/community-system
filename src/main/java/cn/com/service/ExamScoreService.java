@@ -13,4 +13,22 @@ public interface ExamScoreService {
      * @return
      */
     Result<List<ExamScore>> query(Integer pageNum, Integer pageSize);
+
+    /**
+     * 添加
+     * @param examScore
+     */
+    void add(ExamScore examScore);
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    void remove(Integer id);
+
+    /**
+     * 多个删除
+     * @param id
+     */
+    void removeList(List<Integer> id);
 }

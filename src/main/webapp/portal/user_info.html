@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>社区垃圾分类与回收预测系统设计与实现</title>
+		<link rel="stylesheet" href="css/base.css" />
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/user-info.css" />
+		<link rel="stylesheet" href="css/user.css" />
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_834685_1feh8s3rv5u.css" />
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/unslider.min.js"></script>
+	</head>
+	<body>
+		<!--上导航 -->
+		<div class='ucenter-nav clearfix'>
+			<div class='container clearfix'>
+				<h2><a href="index.html"><img src="img/logo.png" alt="" /></a></h2>
+				<div class='ucenter-title'>
+					<h3>个人中心</h3>
+					<a href="index.html">返回商城首页</a>
+				</div>
+				<ul class='ucenter-nav-main'>
+					<li class='li-f'><a href="usercenter.html">首页</a></li>
+					<li class='li-f'><a href="user-info.html">账户设置</a></li>
+					<li class='li-f'><a href="message-center.html">消息</a></li>
+				</ul>
+				<div class='ucenter-nav-search'>
+					<form action="">
+						<input type="text" placeholder="pvp"/>
+						<input class='search-font' type="submit"  value='搜索'/>
+					</form>
+				</div>
+				
+			</div>
+		</div>
+		<!--左导航-->
+			
+		<!--主体-->
+		<div class='ucenter-wrapper'>
+			<div class="container clearfix ">
+				<!--左导航-->
+				<div class='ucenter-left  clearfix'>
+					
+					<div>
+						<h3>个人中心</h3>
+						<ul class='firstList'>
+							<li><a href="user-info.html">个人信息</a></li>
+							<li><a href="account-safe.html">账户安全</a></li>
+							<li><a href="address.html">小区地址</a></li>
+							<li><a href="level.html">我的级别</a></li>
+						</ul>
+					</div>
+					
+				</div>
+				<div class='ucenter-right clearfix fl'>
+					<!--具体内容-->
+					<div class='user-info'>
+						<ul class='user-info-swt clearfix '>
+							<li class='active'>基本信息</li>
+							<li>头像照片</li>
+						</ul>
+						<div class='change-info second-wrapper on'>
+							<ul>
+								<li>
+									<span class='change-info-sp'>用户名 :</span>
+									<div>
+										<i>熊大</i>
+									</div>
+									
+								</li>
+								<li>
+									<span class='change-info-sp'>昵称 :</span>
+									<div>
+										<input type="text" value='熊大'/>
+									</div>
+									
+								</li>
+								<li>
+									<span class='change-info-sp'>性别 :</span>
+									<div>
+										<input type="radio" name='sex'/>
+										<label for="">男</label>
+										<input type="radio" name='sex' />
+										<label for="">女</label>
+										<input type="radio" name='sex' />
+										<label for="">保密</label>
+									</div>
+									
+								</li>
+								<li>
+									<span class='change-info-sp'>生日 :</span>
+									<div class='birthday'>
+										<input type="text"  />：年
+										<input type="text"  />：月
+										<input type="text"  />：日
+									</div>
+								</li>
+								<li>
+									<span class='change-info-sp'>邮箱 :</span>
+									<div>
+										1111@86.com
+									</div>
+								</li>
+							</ul>
+							<div class='change-info-sub'>
+								<button>提交</button>
+							</div>
+							<div class='uinfo-head'>
+								<div class='my-head'>
+									<img src="../img/header.png"/>
+								</div>
+								<ul>
+									<li>用户名:小鑫AZZ</li>
+									<li>铜牌会员</li>
+									<li>会员类型:个人用户</li>
+									<li>等级:vip8</li>
+								</ul>
+							</div>
+						</div>
+						<div class='change-head second-wrapper ';>
+							<div class='upload-img'>
+								<p id='upload-img-btn'>请选择您要上传的头像</p>
+								<input type="file" name="" id="" value=""  style='display: none;'/ >
+								<i>仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</i>
+							</div>
+							<div class='big-header'>
+								<img src="../assets/img/s5s4.png" alt="" width="150" />
+							</div>
+							<div class='def-head'> 
+								<h4>推荐头像</h4>
+								<ul class='clearfix'>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img  width="50" height="50"src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
+								</ul>	
+							</div>
+							<div>
+								<button style='background-color: #EBF7E3;margin-top: 25px;border: 1px solid #BFD6AF;'>保存</button>
+							</div>
+							
+							<div class='head-preview'>
+							<h4>效果预览</h4>
+							<p>你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰</p>
+							<div>
+								<img src="../assets/img/s5s4.png" alt=""  width="100"/>
+								<i>100*100像素</i>
+							</div>
+							<div>
+								<img src="../assets/img/s5s4.png" alt=""  width="50"/>
+								<i>50*50像素</i>
+							</div>
+						</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="f_top">
+					<ul>
+						<li>
+							<a href="about.html">关于我们</a>
+						</li>
+						<li>
+							<a href="about.html">扩展知识</a>
+						</li>
+						<li>
+							<a href="about.html">
+								联系我们
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							查看更多
+						    </a>
+						</li>
+					</ul>
+				</div>
+				<div class="f_content">
+					<ul>
+						<li>
+							<a href="#">可回收垃圾</a>
+						</li>
+						<li>
+							<a href="#">有害垃圾</a>
+						</li>
+						<li>
+							<a href="#">干垃圾</a>
+						</li>
+						<li>
+							<a href="#">湿垃圾</a>
+						</li>
+						<li>
+							<a href="#">大件垃圾</a>
+						</li>
+						<li>
+							<a href="#">建筑垃圾</a>
+						</li>
+						<li>
+							<a href="#">合作与友情链接</a>
+						</li>
+					</ul>
+				</div>
+				
+			</div>
+		</div>
+		<div class="footer_extra">
+			<div class="container">
+				<div class="f_bottom">
+					<p> 社区垃圾分类与回收预测系统设计与实现版权所有 ICP备123456</p>
+					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
+			</div>
+			</div>
+			
+		</div>		
+	</body>
+	
+</html>

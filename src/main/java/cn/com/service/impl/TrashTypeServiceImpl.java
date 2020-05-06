@@ -37,4 +37,14 @@ public class TrashTypeServiceImpl implements TrashTypeService {
         trashType.setCreateDate(new Date());
         trashTypeMapper.insert(trashType);
     }
+
+    @Override
+    public void remove(Integer id) {
+        trashTypeMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
+    }
 }

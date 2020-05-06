@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,13 +20,30 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public Result<List<Exam>> query(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
         ExamExample example = new ExamExample();
 //        if (!StringUtils.isEmpty(account)){
 //        UnitExample.Criteria criteria = example.createCriteria();
 //            criteria.andAccountEqualTo(account);
 //        }
+        List<Exam> memberList1 = examMapper.selectByExample(example);
+        PageHelper.startPage(pageNum,pageSize);
         List<Exam> memberList = examMapper.selectByExample(example);
-        return new Result<>(memberList.size(),memberList);
+        return new Result<>(memberList1.size(),memberList);
+    }
+
+    @Override
+    public void add(Exam exam) {
+        exam.setCreateDate(new Date());
+        examMapper.insert(exam);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        examMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
     }
 }

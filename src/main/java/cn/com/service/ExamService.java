@@ -14,4 +14,22 @@ public interface ExamService {
      * @return
      */
     Result<List<Exam>> query(Integer pageNum, Integer pageSize);
+
+    /**
+     * 添加
+     * @param exam
+     */
+    void add(Exam exam);
+
+    /**
+     * 单个删除
+     * @param id
+     */
+    void remove(Integer id);
+
+    /**
+     * 多个删除
+     * @param id
+     */
+    void removeList(List<Integer> id);
 }

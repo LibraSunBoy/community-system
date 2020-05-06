@@ -52,4 +52,14 @@ public class CommunityServiceImpl implements CommunityService {
         community.setCreateDate(new Date());
         communityMapper.insert(community);
     }
+
+    @Override
+    public void remove(Integer id) {
+        communityMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
+    }
 }

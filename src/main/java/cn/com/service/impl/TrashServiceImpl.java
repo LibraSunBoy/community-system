@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -19,13 +20,30 @@ public class TrashServiceImpl implements TrashService {
 
     @Override
     public Result<List<Trash>> query(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
         TrashExample example = new TrashExample();
 //        if (!StringUtils.isEmpty(account)){
 //        UnitExample.Criteria criteria = example.createCriteria();
 //            criteria.andAccountEqualTo(account);
 //        }
+        List<Trash> memberList1 = trashMapper.selectByExample(example);
+        PageHelper.startPage(pageNum,pageSize);
         List<Trash> memberList = trashMapper.selectByExample(example);
-        return new Result<>(memberList.size(),memberList);
+        return new Result<>(memberList1.size(),memberList);
+    }
+
+    @Override
+    public void add(Trash trash) {
+        trash.setCreateDate(new Date());
+        trashMapper.insert(trash);
+    }
+
+    @Override
+    public void remove(Integer id) {
+        trashMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
     }
 }

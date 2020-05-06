@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="layui-card-body">
-                            <table class="layui-table" lay-data="{url:requestUrl+'/member/list',method:'get',page:true,limit:20,toolbar: '#toolbarDemo',id:'test'}">
+                            <table class="layui-table" lay-data="{url:requestUrl+'/member/list',method:'get',page:true,limit:20,id:'test'}">
                                 <thead>
                                 <tr>
                                     <th lay-data="{type:'checkbox',width:80}">ID</th>
@@ -69,7 +69,6 @@
                                     <th lay-data="{field:'room'}">房间</th>
                                     <th lay-data="{field:'integral'}">积分</th>
                                     <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
-                                    <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}">操作</th>
                                 </tr>
                                 </thead>
                             </table>
@@ -81,22 +80,9 @@
         </div>
     </body>
     <script type="text/html" id="handleBar">
-        <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-            <i class="layui-icon">&#xe601;</i>
-        </a>
-        <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-            <i class="layui-icon">&#xe642;</i>
-        </a>
         <a title="删除" onclick="member_del('{{d.id}}')" href="javascript:;">
             <i class="layui-icon">&#xe640;</i>
         </a>
-    </script>
-    <script type="text/html" id="toolbarDemo">
-        <div class = "layui-btn-container" >
-            <button class = "layui-btn layui-btn-sm" lay-event = "getCheckData" > 获取选中行数据 </button>
-            <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button >
-            <button class = "layui-btn layui-btn-sm" lay-event = "isAll" > 验证是否全选</button>
-        </div >
     </script>
     <script type="text/html" id="status">
         {{#  if(d.status == 0){ }}
@@ -173,7 +159,7 @@
               $ = layui.jquery;
               //发异步删除数据
               $.ajax({
-                  url: requestUrl+"/unit/remove",
+                  url: requestUrl+"/member/remove",
                   type: "post",
                   data: {id:id},
                   dataType: "json",
@@ -207,7 +193,7 @@
               $ = layui.jquery;
               //发异步删除数据
               $.ajax({
-                  url: requestUrl+"/unit/removeList",
+                  url: requestUrl+"/member/removeList",
                   type: "post",
                   data: {"id":arr},
                   dataType: "json",

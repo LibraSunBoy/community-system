@@ -67,4 +67,14 @@ public class MemberServiceImpl implements MemberService {
         List<Member> memberList = memberMapper.selectByExample(example);
         return new Result<>(memberList.size(),memberList);
     }
+
+    @Override
+    public void remove(Integer id) {
+        memberMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void removeList(List<Integer> id) {
+        id.stream().forEach(i -> remove(i));
+    }
 }

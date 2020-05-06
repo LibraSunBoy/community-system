@@ -23,6 +23,23 @@ layui.use('laytpl', function(){
             .replace(/mm/g, hms[1])
             .replace(/ss/g, hms[2]);
     }
+
+    //时间戳的处理
+    layui.laytpl.toDate = function(d, format){
+        var date =new Date(d)
+            ,ymd = [
+            this.digit(date.getFullYear(), 4)
+            ,this.digit(date.getMonth() + 1)
+            ,this.digit(date.getDate())
+        ];
+
+        format = format || 'yyyy-MM-dd';
+
+        return format.replace(/yyyy/g, ymd[0])
+            .replace(/MM/g, ymd[1])
+            .replace(/dd/g, ymd[2])
+    }
+
     //数字前置补零
     layui.laytpl.digit = function(num, length, end){
         var str = '';
