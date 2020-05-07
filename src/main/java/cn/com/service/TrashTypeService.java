@@ -12,7 +12,7 @@ public interface TrashTypeService {
      * @param
      * @return
      */
-    Result<List<TrashType>> query(Integer pageNum, Integer pageSize);
+    Result<List<TrashType>> query(Integer pageNum, Integer pageSize,String name);
 
     /**
      * 添加
@@ -31,5 +31,11 @@ public interface TrashTypeService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param trashType
+     */
+    void update(TrashType trashType);
 
 }

@@ -52,4 +52,10 @@ public interface AdminService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param admin
+     */
+    void update(Admin admin);
 }

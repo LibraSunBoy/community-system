@@ -8,6 +8,7 @@ import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,12 +20,12 @@ public class TrashTypeServiceImpl implements TrashTypeService {
     private TrashTypeMapper trashTypeMapper;
 
     @Override
-    public Result<List<TrashType>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<TrashType>> query(Integer pageNum, Integer pageSize,String name) {
         TrashTypeExample example = new TrashTypeExample();
-//        if (!StringUtils.isEmpty(account)){
-//        UnitExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        if (!StringUtils.isEmpty(name)){
+            TrashTypeExample.Criteria criteria = example.createCriteria();
+            criteria.andNameLike(name+"%");
+        }
         List<TrashType> memberList1 = trashTypeMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<TrashType> memberList = trashTypeMapper.selectByExample(example);
@@ -46,5 +47,10 @@ public class TrashTypeServiceImpl implements TrashTypeService {
     @Override
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
+    }
+
+    @Override
+    public void update(TrashType trashType) {
+        trashTypeMapper.updateByPrimaryKeySelective(trashType);
     }
 }

@@ -57,15 +57,19 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public Result<List<Member>> query(Integer pageNum, Integer pageSize, String account) {
-        PageHelper.startPage(pageNum,pageSize);
+    public Result<List<Member>> query(Integer pageNum, Integer pageSize, String nickName, String mobile) {
         MemberExample example = new MemberExample();
-        if (!StringUtils.isEmpty(account)){
-            MemberExample.Criteria criteria = example.createCriteria();
-            criteria.andAccountEqualTo(account);
+        MemberExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(nickName)){
+            criteria.andNickNameLike(nickName+"%");
         }
+        if (!StringUtils.isEmpty(mobile)){
+            criteria.andMobileLike(mobile+"%");
+        }
+        int i = memberMapper.countByExample(example);
+        PageHelper.startPage(pageNum,pageSize);
         List<Member> memberList = memberMapper.selectByExample(example);
-        return new Result<>(memberList.size(),memberList);
+        return new Result<>(i,memberList);
     }
 
     @Override
@@ -76,5 +80,10 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
+    }
+
+    @Override
+    public void update(Member member) {
+        memberMapper.updateByPrimaryKeySelective(member);
     }
 }

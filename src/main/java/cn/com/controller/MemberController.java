@@ -43,8 +43,11 @@ public class MemberController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Member>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize, String account){
-        Result<List<Member>> list = memberService.query(pageNum, pageSize, account);
+    public Result<List<Member>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                      @RequestParam(value = "limit",defaultValue = "20") Integer pageSize,
+                                      @RequestParam(value = "nickName",required=false) String nickName,
+                                      @RequestParam(value = "mobile",required=false) String mobile){
+        Result<List<Member>> list = memberService.query(pageNum, pageSize, nickName,mobile);
         return list;
     }
 
@@ -59,6 +62,13 @@ public class MemberController {
     @ResponseBody
     public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
         memberService.removeList(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Member member){
+        memberService.update(member);
         return new Result<>().success();
     }
 }

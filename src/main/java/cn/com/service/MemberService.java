@@ -36,10 +36,10 @@ public interface MemberService {
 
     /**
      * 后台用户列表
-     * @param account
+     * @param
      * @return
      */
-    Result<List<Member>> query(Integer pageNum, Integer pageSize, String account);
+    Result<List<Member>> query(Integer pageNum, Integer pageSize, String nickName, String mobile);
 
     /**
      * 单个删除
@@ -52,4 +52,10 @@ public interface MemberService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param member
+     */
+    void update(Member member);
 }

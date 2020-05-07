@@ -64,7 +64,7 @@ public class AdminServiceImpl implements AdminService {
         AdminExample example = new AdminExample();
         if (!StringUtils.isEmpty(account)){
             AdminExample.Criteria criteria = example.createCriteria();
-            criteria.andAccountEqualTo(account);
+            criteria.andAccountLike(account+"%");
         }
         List<Admin> userList = adminMapper.selectByExample(example);
         return new Result<>(userList.size(),userList);
@@ -78,5 +78,10 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
+    }
+
+    @Override
+    public void update(Admin admin) {
+        adminMapper.updateByPrimaryKeySelective(admin);
     }
 }

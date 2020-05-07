@@ -33,45 +33,19 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+                                    <input type="text" name="nickName" id="nickName" placeholder="请输入昵称" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+                                    <input type="text" name="mobile" id="mobile" placeholder="请输入手机号" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                    <button class="layui-btn" data-type="reload"><i class="layui-icon">&#xe615;</i></button>
                                 </div>
-                                <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
-                                </div>
-                            </form>
                         </div>
 
                         <div class="layui-card-body">
-                            <table class="layui-table" lay-data="{url:requestUrl+'/member/list',method:'get',page:true,limit:20,id:'test'}">
-                                <thead>
-                                <tr>
-                                    <th lay-data="{type:'checkbox',width:80}">ID</th>
-                                    <th lay-data="{field:'id',width:80, sort: true}">ID</th>
-                                    <th lay-data="{field:'account'}">登录账号</th>
-                                    <th lay-data="{field:'nickName'}">昵称</th>
-                                    <th lay-data="{field:'gender',templet: '#status'}">性别</th>
-                                    <th lay-data="{field:'email'}">邮箱</th>
-                                    <th lay-data="{field:'mobile'}">手机号</th>
-                                    <th lay-data="{field:'type',templet: '#type'}">类别</th>
-                                    <th lay-data="{field:'province'}">省</th>
-                                    <th lay-data="{field:'city'}">市</th>
-                                    <th lay-data="{field:'area'}">区</th>
-                                    <th lay-data="{field:'street'}">街道</th>
-                                    <th lay-data="{field:'floor'}">楼层</th>
-                                    <th lay-data="{field:'room'}">房间</th>
-                                    <th lay-data="{field:'integral'}">积分</th>
-                                    <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
-                                </tr>
-                                </thead>
-                            </table>
+                            <table class="layui-table" id="demo"></table>
                         </div>
 
                     </div>
@@ -79,11 +53,6 @@
             </div>
         </div>
     </body>
-    <script type="text/html" id="handleBar">
-        <a title="删除" onclick="member_del('{{d.id}}')" href="javascript:;">
-            <i class="layui-icon">&#xe640;</i>
-        </a>
-    </script>
     <script type="text/html" id="status">
         {{#  if(d.status == 0){ }}
         保密
@@ -96,121 +65,50 @@
     <script>
         layui.use('table', function(){
             var table = layui.table;
+            table.render({
+                elem: '#demo'
+                ,url: requestUrl+'/member/list' //数据接口
+                ,method:'get'
+                ,page: true //开启分页
+                ,limit:20
+                ,id:'list'
+                ,cols: [[ //表头
+                    {field: 'id', title: 'ID', width:80, sort: true, fixed: 'left'}
+                    ,{field: 'account', title: '登录账号'}
+                    ,{field: 'nickName', title: '昵称'}
+                    ,{field: 'gender', title: '性别',templet: '#status'}
+                    ,{field: 'mobile', title: '手机号'}
+                    ,{field: 'email', title: '邮箱'}
+                    ,{field: 'type', title: '类别',templet: '#type'}
+                    ,{field: 'province', title: '省'}
+                    ,{field: 'city', title: '市'}
+                    ,{field: 'area', title: '区'}
+                    ,{field: 'street', title: '街道'}
+                    ,{field: 'floor', title: '楼层'}
+                    ,{field: 'room', title: '房间'}
+                    ,{field: 'integral', title: '积分'}
+                    ,{field: 'createDate', title: '创建时间', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}
+                ]]
+            });
 
+            var $ = layui.$, active = {
+                reload: function(){
+                    var nickName = $('#nickName').val();
+                    var mobile = $('#mobile').val();
+                    //执行重载
+                    table.reload('list', {
+                        where: {
+                            nickName:nickName,
+                            mobile:mobile
+                        }
+                    }, 'data');
+                }
+            };
+
+            $('.layui-card-body .layui-btn').on('click', function(){
+                var type = $(this).data('type');
+                active[type] ? active[type].call(this) : '';
+            });
         });
-    </script>
-    <script>
-      layui.use(['laydate','form'], function(){
-        var laydate = layui.laydate;
-        var  form = layui.form;
-
-
-        // 监听全选
-        form.on('checkbox(checkall)', function(data){
-
-          if(data.elem.checked){
-            $('tbody input').prop('checked',true);
-          }else{
-            $('tbody input').prop('checked',false);
-          }
-          form.render('checkbox');
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-          elem: '#end' //指定元素
-        });
-
-
-      });
-
-       /*用户-停用*/
-      function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
-
-              if($(obj).attr('title')=='启用'){
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title','停用')
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!',{icon: 5,time:1000});
-
-              }else{
-                $(obj).attr('title','启用')
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!',{icon: 5,time:1000});
-              }
-
-          });
-      }
-
-      /*用户-删除*/
-      function member_del(id){
-          layer.confirm('确认要删除吗？',function(){
-              $ = layui.jquery;
-              //发异步删除数据
-              $.ajax({
-                  url: requestUrl+"/member/remove",
-                  type: "post",
-                  data: {id:id},
-                  dataType: "json",
-                  success: function (result) {
-                      if (result.code == 200) {
-                          layer.alert("删除成功", {
-                                  icon: 1
-                              },
-                              function() {
-                                  location.reload();
-                              });
-                      } else {
-                          alert(result.msg);
-                      }
-                  }
-              })
-          });
-      }
-
-
-
-      function delAll () {
-          layer.confirm('确认要删除吗？',function(){
-              var table = layui.table;
-              var tableCheck = table.checkStatus('admin');
-              var data = tableCheck.data;
-              var arr = [];
-              for(var i = 0;i<data.length;i++){
-                  arr.push(data[i].id);
-              }
-              $ = layui.jquery;
-              //发异步删除数据
-              $.ajax({
-                  url: requestUrl+"/member/removeList",
-                  type: "post",
-                  data: {"id":arr},
-                  dataType: "json",
-                  success: function (result) {
-                      if (result.code == 200) {
-                          layer.alert("删除成功", {
-                                  icon: 1
-                              },
-                              function() {
-                                  location.reload();
-                              });
-                      } else {
-                          alert(result.msg);
-                      }
-                  }
-              })
-          });
-      }
     </script>
 </html>

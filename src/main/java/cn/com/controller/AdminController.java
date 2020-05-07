@@ -46,7 +46,9 @@ public class AdminController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Admin>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize, String account){
+    public Result<List<Admin>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                     @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                     @RequestParam(value = "account",required = false)String account){
         Result<List<Admin>> list = adminService.query(pageNum, pageSize, account);
         return list;
     }
@@ -62,6 +64,13 @@ public class AdminController {
     @ResponseBody
     public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
         adminService.removeList(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Admin admin){
+        adminService.update(admin);
         return new Result<>().success();
     }
 }

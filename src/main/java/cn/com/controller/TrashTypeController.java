@@ -18,8 +18,10 @@ public class TrashTypeController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<TrashType>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<TrashType>> list = trashTypeService.query(pageNum, pageSize);
+    public Result<List<TrashType>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                         @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                         @RequestParam(value = "name",required = false)String name){
+        Result<List<TrashType>> list = trashTypeService.query(pageNum, pageSize,name);
         return list;
     }
 
@@ -41,6 +43,13 @@ public class TrashTypeController {
     @ResponseBody
     public Result removeList(@RequestParam(value = "id[]") List<Integer> id){
         trashTypeService.removeList(id);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(TrashType trashType){
+        trashTypeService.update(trashType);
         return new Result<>().success();
     }
 }
