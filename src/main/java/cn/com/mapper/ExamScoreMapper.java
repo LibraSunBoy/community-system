@@ -16,15 +16,21 @@ public interface ExamScoreMapper {
 
     int insertSelective(ExamScore record);
 
+    List<ExamScore> selectByExampleWithBLOBs(ExamScoreExample example);
+
     List<ExamScore> selectByExample(ExamScoreExample example);
 
     ExamScore selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") ExamScore record, @Param("example") ExamScoreExample example);
 
+    int updateByExampleWithBLOBs(@Param("record") ExamScore record, @Param("example") ExamScoreExample example);
+
     int updateByExample(@Param("record") ExamScore record, @Param("example") ExamScoreExample example);
 
     int updateByPrimaryKeySelective(ExamScore record);
+
+    int updateByPrimaryKeyWithBLOBs(ExamScore record);
 
     int updateByPrimaryKey(ExamScore record);
 }

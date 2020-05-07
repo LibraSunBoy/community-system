@@ -27,6 +27,13 @@ public class ExamScoreController {
         return list;
     }
 
+    @GetMapping("/getById")
+    @ResponseBody
+    public Result<ExamScore> getById(@RequestParam(value = "id")Integer id){
+        ExamScore list = examScoreService.getById(id);
+        return new Result<>().success(list);
+    }
+
     @PostMapping("/add")
     @ResponseBody
     public Result add(ExamScore examScore){

@@ -53,6 +53,7 @@
                             <th lay-data="{field:'nickName'}">用户昵称</th>
                             <th lay-data="{field:'examId',hide:true}">测验id</th>
                             <th lay-data="{field:'title'}">标题</th>
+                            <th lay-data="{field:'content'}">内容</th>
                             <th lay-data="{field:'score'}">成绩</th>
                             <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
                             <th lay-data="{fixed: 'right', width:150, align:'center', toolbar: '#handleBar'}">操作</th>
@@ -97,8 +98,9 @@
 
                         //获取子页面的元素，进行数据渲染
                         body.contents().find('#id').val(data.id);
-                        body.contents().find("#name").val(data.name);
-
+                        body.contents().find('#nickName').val(data.nickName);
+                        body.contents().find('#title').val(data.title);
+                        body.contents().find('#content').val(data.content);
                     },
                 });
             }

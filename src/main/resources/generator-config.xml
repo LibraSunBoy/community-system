@@ -33,7 +33,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.mapper"
                              targetProject="src\main\java"/>
         <!--生成全部表-->
-        <table tableName="unit">
+        <table tableName="exam_score">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 <!--        <table tableName="%">-->

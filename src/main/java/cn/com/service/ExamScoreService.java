@@ -12,8 +12,10 @@ public interface ExamScoreService {
      * @param
      * @return
      */
-    Result<List<ExamScore>> query(Integer pageNum, Integer pageSize,Integer memberId,Integer examId,Integer score);
+    Result<List<ExamScore>> query(Integer pageNum, Integer pageSize, Integer memberId, Integer examId, Integer score);
 
+
+    ExamScore getById(Integer id);
     /**
      * 添加
      * @param examScore

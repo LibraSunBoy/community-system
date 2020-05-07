@@ -53,6 +53,13 @@ public class ExamScore implements Serializable {
      */
     private Date createDate;
 
+    /**
+     * 题目-答案
+     *
+     * @mbggenerated
+     */
+    private String content;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -111,6 +118,14 @@ public class ExamScore implements Serializable {
         this.createDate = createDate;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -124,6 +139,7 @@ public class ExamScore implements Serializable {
         sb.append(", examId=").append(examId);
         sb.append(", title=").append(title);
         sb.append(", createDate=").append(createDate);
+        sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

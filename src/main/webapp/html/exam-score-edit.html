@@ -22,17 +22,16 @@
     <div class="layui-row">
         <form class="layui-form">
             <input type="hidden" id="id" name="id" >
-            <input type="hidden" id="trashTypeId">
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    <span class="x-red">*</span>类别
+                    <span class="x-red">*</span>昵称
                 </label>
                 <div class="layui-input-inline">
-                    <select id="selectId" name="trashTypeId">
-                    </select>
+                    <input type="text" id="nickName" name="nickName" disabled
+                           autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
-
+                    <span class="x-red">*</span>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -40,7 +39,7 @@
                     <span class="x-red">*</span>标题
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="title" name="title" required="true" lay-verify="required"
+                    <input type="text" id="title" name="title" disabled
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -52,7 +51,19 @@
                     <span class="x-red">*</span>内容
                 </label>
                 <div class="layui-input-inline">
-                    <textarea placeholder="请输入内容" class="layui-textarea" id="content" name="content" lay-verify="required" required="true"></textarea>
+                    <textarea placeholder="请输入内容" disabled class="layui-textarea" id="content" name="content" lay-verify="required" required="true"></textarea>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+                    <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>分数
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="score" name="score" required="true" lay-verify="required|number"
+                           autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
@@ -62,7 +73,7 @@
                 <label class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
-                    编辑
+                    提交
                 </button>
             </div>
         </form>
@@ -74,45 +85,42 @@
             $ = layui.jquery;
             var form = layui.form,
                 layer = layui.layer;
-
-            //动态添加下拉框     同时可以设置默认值
-            $.ajax({
-                url:requestUrl+'/trashType/usebleList',
-                dataType:'json',
-                type:'get',
-                success:function(data){
-
-                    $.each(data.data,function(index,item){
-                        //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
-                        $('#selectId').append(new Option(item.name,item.id));//往下拉菜单里添加元素
-                        //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
-                         $('#selectId').val($('#trashTypeId').val());
-                    })
-                    form.render('select'); //刷新表单select选择框渲染
-                }
-            });
+            // var id=$('#id').val();
+            // //动态添加下拉框     同时可以设置默认值
+            // $.ajax({
+            //     url:requestUrl+'/examScore/getById',
+            //     data: {id:id},
+            //     dataType:'json',
+            //     type:'get',
+            //     success:function(data){
+            //         $('#nickName').val(data.data.nickName);
+            //         $('#title').val(data.data.title);
+            //         if (data.data.content.length>0){
+            //             $.each(data.data.content,function(index,item){
+            //                 $('#content').val(item);
+            //             })
+            //         }
+            //         form.render();
+            //     }
+            // });
 
             //监听提交
             form.on('submit(add)',
                 function(data) {
 
-                    if(data.field.title == ""){
-                        layer.msg('标题不能为空！', {icon: 2});
-                        return false;
-                    }
-                    if(data.field.content == ""){
-                        layer.msg('内容不能为空！', {icon: 2});
+                    if(data.field.score == ""){
+                        layer.msg('分数不能为空！', {icon: 2});
                         return false;
                     }
 
                     $.ajax({
-                        url: requestUrl+"/trashKnowledge/update",
+                        url: requestUrl+"/examScore/update",
                         type: "post",
-                        data: data.field,
+                        data: {id:data.field.id,score:data.field.score},
                         dataType: "json",
                         success: function (result) {
                             if (result.code == 200) {
-                                layer.alert("编辑成功", {
+                                layer.alert("操作成功", {
                                         icon: 6
                                     },
                                     function() {

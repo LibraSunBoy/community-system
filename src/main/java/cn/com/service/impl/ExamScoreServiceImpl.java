@@ -42,10 +42,19 @@ public class ExamScoreServiceImpl implements ExamScoreService {
         if (!StringUtils.isEmpty(score)){
             criteria.andScoreEqualTo(score);
         }
-        List<ExamScore> memberList1 = examScoreMapper.selectByExample(example);
+        int i = examScoreMapper.countByExample(example);
         PageHelper.startPage(pageNum,pageSize);
-        List<ExamScore> memberList = examScoreMapper.selectByExample(example);
-        return new Result<>(memberList1.size(),memberList);
+        List<ExamScore> memberList = examScoreMapper.selectByExampleWithBLOBs(example);
+        return new Result<>(i,memberList);
+    }
+
+    @Override
+    public ExamScore getById(Integer id) {
+        ExamScoreExample example = new ExamScoreExample();
+        ExamScoreExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        List<ExamScore> examScores = examScoreMapper.selectByExampleWithBLOBs(example);
+        return examScores.get(0);
     }
 
     @Override
