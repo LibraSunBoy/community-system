@@ -12,7 +12,7 @@ public interface ExamScoreService {
      * @param
      * @return
      */
-    Result<List<ExamScore>> query(Integer pageNum, Integer pageSize);
+    Result<List<ExamScore>> query(Integer pageNum, Integer pageSize,Integer memberId,Integer examId,Integer score);
 
     /**
      * 添加

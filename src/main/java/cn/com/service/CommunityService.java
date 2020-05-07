@@ -13,7 +13,7 @@ public interface CommunityService {
      * @param
      * @return
      */
-    Result<List<Community>> query(Integer pageNum, Integer pageSize);
+    Result<List<Community>> query(Integer pageNum, Integer pageSize,String name,String location);
 
     /**
      * 所有小区列表

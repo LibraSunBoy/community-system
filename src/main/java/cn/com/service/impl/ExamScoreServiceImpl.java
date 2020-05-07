@@ -8,6 +8,7 @@ import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,12 +20,18 @@ public class ExamScoreServiceImpl implements ExamScoreService {
     private ExamScoreMapper examScoreMapper;
 
     @Override
-    public Result<List<ExamScore>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<ExamScore>> query(Integer pageNum, Integer pageSize,Integer memberId,Integer examId,Integer score) {
         ExamScoreExample example = new ExamScoreExample();
-//        if (!StringUtils.isEmpty(account)){
-//        UnitExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        ExamScoreExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(memberId)){
+            criteria.andMemberIdEqualTo(memberId);
+        }
+        if (!StringUtils.isEmpty(examId)){
+            criteria.andExamIdEqualTo(examId);
+        }
+        if (!StringUtils.isEmpty(score)){
+            criteria.andScoreEqualTo(score);
+        }
         List<ExamScore> memberList1 = examScoreMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<ExamScore> memberList = examScoreMapper.selectByExample(example);

@@ -13,7 +13,7 @@ public interface ExamService {
      * @param
      * @return
      */
-    Result<List<Exam>> query(Integer pageNum, Integer pageSize);
+    Result<List<Exam>> query(Integer pageNum, Integer pageSize,String title);
 
     /**
      * 添加

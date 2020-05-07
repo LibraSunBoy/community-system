@@ -21,12 +21,18 @@ public class UnitServiceImpl implements UnitService {
     private UnitMapper unitMapper;
 
     @Override
-    public Result<List<Unit>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<Unit>> query(Integer pageNum, Integer pageSize,String name,Integer floor,String location) {
         UnitExample example = new UnitExample();
-//        if (!StringUtils.isEmpty(account)){
-//        UnitExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        UnitExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(floor)){
+            criteria.andFloorEqualTo(floor);
+        }
+        if (!StringUtils.isEmpty(name)){
+            criteria.andNameLike(name+"%");
+        }
+        if (!StringUtils.isEmpty(location)){
+            criteria.andLocationLike(location+"%");
+        }
         List<Unit> memberList1 = unitMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<Unit> memberList = unitMapper.selectByExample(example);

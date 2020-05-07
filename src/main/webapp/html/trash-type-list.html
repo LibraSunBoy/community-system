@@ -159,7 +159,7 @@
     function delAll () {
         layer.confirm('确认要删除吗？',function(){
             var table = layui.table;
-            var tableCheck = table.checkStatus('admin');
+            var tableCheck = table.checkStatus('list');
             var data = tableCheck.data;
             var arr = [];
             for(var i = 0;i<data.length;i++){

@@ -33,20 +33,18 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
                         <div class="layui-inline layui-show-xs-block">
-                            <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                            <input type="number" name="score" id="score" placeholder="请输入成绩" autocomplete="off" class="layui-input">
                         </div>
                         <div class="layui-inline layui-show-xs-block">
-                            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                            <button class="layui-btn"  data-type="reload"><i class="layui-icon">&#xe615;</i></button>
                         </div>
-                    </form>
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                 </div>
                 <div class="layui-card-body ">
-                    <table class="layui-table" lay-data="{url:requestUrl+'/examScore/list',method:'get',page:true,limit:20,id:'admin'}">
+                    <table class="layui-table" lay-data="{url:requestUrl+'/examScore/list',method:'get',page:true,limit:20,id:'list'}">
                         <thead>
                         <tr>
                             <th lay-data="{type:'checkbox',width:80}">ID</th>
@@ -79,25 +77,25 @@
 <script>
     layui.use('table', function(){
         var table = layui.table;
+        var $ = layui.$, active = {
+            reload: function(){
+                var score = $('#score').val();
+                //执行重载
+                table.reload('list', {
+                    where: {
+                        score:score
+                    }
+                }, 'data');
+            }
+        };
+
+        $('.layui-card-body .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
 </script>
 <script>
-    layui.use(['laydate'], function(){
-        var laydate = layui.laydate;
-        var form = layui.form;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-
     /*用户-删除*/
     function member_del(id){
         layer.confirm('确认要删除吗？',function(){
@@ -129,7 +127,7 @@
     function delAll () {
         layer.confirm('确认要删除吗？',function(){
             var table = layui.table;
-            var tableCheck = table.checkStatus('admin');
+            var tableCheck = table.checkStatus('list');
             var data = tableCheck.data;
             var arr = [];
             for(var i = 0;i<data.length;i++){

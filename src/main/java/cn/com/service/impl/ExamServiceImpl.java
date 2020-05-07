@@ -8,6 +8,7 @@ import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,12 +20,12 @@ public class ExamServiceImpl implements ExamService {
     private ExamMapper examMapper;
 
     @Override
-    public Result<List<Exam>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<Exam>> query(Integer pageNum, Integer pageSize,String title) {
         ExamExample example = new ExamExample();
-//        if (!StringUtils.isEmpty(account)){
-//        UnitExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        if (!StringUtils.isEmpty(title)){
+            ExamExample.Criteria criteria = example.createCriteria();
+            criteria.andTitleLike(title+"%");
+        }
         List<Exam> memberList1 = examMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<Exam> memberList = examMapper.selectByExample(example);

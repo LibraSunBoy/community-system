@@ -11,7 +11,7 @@ public interface UnitService {
      * @param
      * @return
      */
-    Result<List<Unit>> query(Integer pageNum, Integer pageSize);
+    Result<List<Unit>> query(Integer pageNum, Integer pageSize,String name,Integer floor,String location);
 
     /**
      * 添加

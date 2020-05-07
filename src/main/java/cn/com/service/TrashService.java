@@ -12,7 +12,7 @@ public interface TrashService {
      * @param
      * @return
      */
-    Result<List<Trash>> query(Integer pageNum, Integer pageSize);
+    Result<List<Trash>> query(Integer pageNum, Integer pageSize,String number,String capacity,String location);
 
     /**
      * 添加

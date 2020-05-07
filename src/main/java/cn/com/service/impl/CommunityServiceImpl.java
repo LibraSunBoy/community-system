@@ -22,12 +22,15 @@ public class CommunityServiceImpl implements CommunityService {
     private CommunityMapper communityMapper;
 
     @Override
-    public Result<List<Community>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<Community>> query(Integer pageNum, Integer pageSize,String name,String location) {
         CommunityExample example = new CommunityExample();
-//        if (!StringUtils.isEmpty(account)){
-//            CommunityExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        CommunityExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(name)){
+            criteria.andNameLike(name+"%");
+        }
+        if (!StringUtils.isEmpty(location)){
+            criteria.andLocationLike(location+"%");
+        }
         List<Community> communityList1 = communityMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<Community> communityList = communityMapper.selectByExample(example);

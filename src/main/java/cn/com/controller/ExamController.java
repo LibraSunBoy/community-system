@@ -19,8 +19,10 @@ public class ExamController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Exam>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<Exam>> list = examService.query(pageNum, pageSize);
+    public Result<List<Exam>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                    @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                    @RequestParam(value = "title",required = false)String title){
+        Result<List<Exam>> list = examService.query(pageNum, pageSize,title);
         return list;
     }
 

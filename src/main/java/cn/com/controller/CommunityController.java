@@ -20,8 +20,11 @@ public class CommunityController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Community>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<Community>> list = communityService.query(pageNum, pageSize);
+    public Result<List<Community>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                         @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                         @RequestParam(value = "name",required = false)String name,
+                                         @RequestParam(value = "location",required = false)String location){
+        Result<List<Community>> list = communityService.query(pageNum, pageSize,name,location);
         return list;
     }
 

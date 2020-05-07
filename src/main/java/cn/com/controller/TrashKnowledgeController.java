@@ -19,8 +19,11 @@ public class TrashKnowledgeController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<TrashKnowledge>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<TrashKnowledge>> list = trashKnowledgeService.query(pageNum, pageSize);
+    public Result<List<TrashKnowledge>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                              @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                              @RequestParam(value = "trashTypeId",required = false)Integer trashTypeId,
+                                              @RequestParam(value = "title",required = false)String title){
+        Result<List<TrashKnowledge>> list = trashKnowledgeService.query(pageNum, pageSize,trashTypeId,title);
         return list;
     }
 

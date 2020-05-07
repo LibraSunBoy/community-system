@@ -17,8 +17,12 @@ public class TrashController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Trash>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<Trash>> list = trashService.query(pageNum, pageSize);
+    public Result<List<Trash>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                     @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                     @RequestParam(value = "number",required = false)String number,
+                                     @RequestParam(value = "capacity",required = false)String capacity,
+                                     @RequestParam(value = "location",required = false)String location){
+        Result<List<Trash>> list = trashService.query(pageNum, pageSize,number,capacity,location);
         return list;
     }
 

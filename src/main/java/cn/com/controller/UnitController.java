@@ -20,8 +20,12 @@ public class UnitController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<Unit>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<Unit>> list = unitService.query(pageNum, pageSize);
+    public Result<List<Unit>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                    @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                    @RequestParam(value = "name",required = false)String name,
+                                    @RequestParam(value = "floor",required = false)Integer floor,
+                                    @RequestParam(value = "location",required = false)String location){
+        Result<List<Unit>> list = unitService.query(pageNum, pageSize,name,floor,location);
         return list;
     }
 

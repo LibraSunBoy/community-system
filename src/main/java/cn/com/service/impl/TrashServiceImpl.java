@@ -8,6 +8,7 @@ import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
@@ -19,12 +20,18 @@ public class TrashServiceImpl implements TrashService {
     private TrashMapper trashMapper;
 
     @Override
-    public Result<List<Trash>> query(Integer pageNum, Integer pageSize) {
+    public Result<List<Trash>> query(Integer pageNum, Integer pageSize,String number,String capacity,String location) {
         TrashExample example = new TrashExample();
-//        if (!StringUtils.isEmpty(account)){
-//        UnitExample.Criteria criteria = example.createCriteria();
-//            criteria.andAccountEqualTo(account);
-//        }
+        TrashExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(number)){
+            criteria.andNumberLike(number+"%");
+        }
+        if (!StringUtils.isEmpty(capacity)){
+            criteria.andCapacityLike(capacity+"%");
+        }
+        if (!StringUtils.isEmpty(location)){
+            criteria.andLocationLike(location+"%");
+        }
         List<Trash> memberList1 = trashMapper.selectByExample(example);
         PageHelper.startPage(pageNum,pageSize);
         List<Trash> memberList = trashMapper.selectByExample(example);

@@ -18,8 +18,12 @@ public class ExamScoreController {
 
     @GetMapping("/list")
     @ResponseBody
-    public Result<List<ExamScore>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum, @RequestParam(value = "limit",defaultValue = "20")Integer pageSize){
-        Result<List<ExamScore>> list = examScoreService.query(pageNum, pageSize);
+    public Result<List<ExamScore>> query(@RequestParam(value = "page",defaultValue = "1") Integer pageNum,
+                                         @RequestParam(value = "limit",defaultValue = "20")Integer pageSize,
+                                         @RequestParam(value = "memberId",required = false)Integer memberId,
+                                         @RequestParam(value = "examId",required = false)Integer examId,
+                                         @RequestParam(value = "score",required = false)Integer score){
+        Result<List<ExamScore>> list = examScoreService.query(pageNum, pageSize,memberId,examId,score);
         return list;
     }
 
