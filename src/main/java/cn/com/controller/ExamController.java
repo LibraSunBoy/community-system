@@ -45,4 +45,11 @@ public class ExamController {
         examService.removeList(id);
         return new Result<>().success();
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Exam exam){
+        examService.update(exam);
+        return new Result<>().success();
+    }
 }

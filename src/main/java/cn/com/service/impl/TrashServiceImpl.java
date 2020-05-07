@@ -65,6 +65,12 @@ public class TrashServiceImpl implements TrashService {
         id.stream().forEach(i -> remove(i));
     }
 
+    @Override
+    public void update(Trash trash) {
+        dealForeignKey(trash);
+        trashMapper.updateByPrimaryKeySelective(trash);
+    }
+
     private void dealForeignKey(Trash trash){
         if (trash.getCommunityId()!=null){
             Community community = communityMapper.selectByPrimaryKey(trash.getCommunityId());

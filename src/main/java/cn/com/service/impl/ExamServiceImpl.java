@@ -47,4 +47,9 @@ public class ExamServiceImpl implements ExamService {
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
     }
+
+    @Override
+    public void update(Exam exam) {
+        examMapper.updateByPrimaryKeySelective(exam);
+    }
 }

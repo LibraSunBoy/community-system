@@ -48,4 +48,11 @@ public class TrashController {
         return new Result<>().success();
     }
 
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Trash trash){
+        trashService.update(trash);
+        return new Result<>().success();
+    }
+
 }

@@ -26,7 +26,13 @@ tomcat版本：8.5.49
 
 document中admin.sql文件是数据库文件，可在MySQL中运行
 
-后台地址：http://localhost:8080/项目名/html/index.html
+后台地址：http://localhost:8080/项目名/html/login.html
 
 前台地址：http://localhost:8080/项目名/portal/index.html
+
+账号密码一致，登录账号就是密码
+
+后台使用layui
+
+layui文档地址：https://www.layui.com/doc/
 

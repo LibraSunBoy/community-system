@@ -21,12 +21,13 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form">
+            <input type="hidden" id="id" name="id" >
             <div class="layui-form-item">
                 <label class="layui-form-label">
                     <span class="x-red">*</span>小区
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="name" name="name" required="true"
+                    <input type="text" id="name" name="name" required="true"  lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -38,7 +39,7 @@
                     <span class="x-red">*</span>位置
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="location" name="location" required="true"
+                    <input type="text" id="location" name="location" required="true"  lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -49,7 +50,7 @@
                 <label for="location" class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
-                    增加
+                    编辑
                 </button>
             </div>
         </form>
@@ -78,13 +79,13 @@
 
 
                     $.ajax({
-                        url: requestUrl+"/community/add",
+                        url: requestUrl+"/community/update",
                         type: "post",
                         data: data.field,
                         dataType: "json",
                         success: function (result) {
                             if (result.code == 200) {
-                                layer.alert("增加成功", {
+                                layer.alert("编辑成功", {
                                         icon: 6
                                     },
                                     function() {

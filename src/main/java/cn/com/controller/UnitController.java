@@ -48,4 +48,11 @@ public class UnitController {
         unitService.removeList(id);
         return new Result<>().success();
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Unit unit){
+        unitService.update(unit);
+        return new Result<>().success();
+    }
 }

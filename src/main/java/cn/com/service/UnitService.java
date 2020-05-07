@@ -30,4 +30,10 @@ public interface UnitService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param unit
+     */
+    void update(Unit unit);
 }

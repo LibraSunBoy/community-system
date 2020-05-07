@@ -57,6 +57,12 @@ public class TrashKnowledgeServiceImpl implements TrashKnowledgeService {
         id.stream().forEach(i -> remove(i));
     }
 
+    @Override
+    public void update(TrashKnowledge trashKnowledge) {
+        dealForeignKey(trashKnowledge);
+        trashKnowledgeMapper.updateByPrimaryKeySelective(trashKnowledge);
+    }
+
     private void dealForeignKey(TrashKnowledge trashKnowledge){
         if (trashKnowledge.getTrashTypeId()!=null){
             TrashType trashType = trashTypeMapper.selectByPrimaryKey(trashKnowledge.getTrashTypeId());

@@ -59,4 +59,11 @@ public class CommunityController {
         communityService.removeList(id);
         return new Result<>().success();
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(Community community){
+        communityService.update(community);
+        return new Result<>().success();
+    }
 }

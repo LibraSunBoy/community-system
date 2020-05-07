@@ -48,4 +48,11 @@ public class TrashKnowledgeController {
         return new Result<>().success();
     }
 
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(TrashKnowledge trashKnowledge){
+        trashKnowledgeService.update(trashKnowledge);
+        return new Result<>().success();
+    }
+
 }

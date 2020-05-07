@@ -48,4 +48,11 @@ public class ExamScoreController {
         examScoreService.removeList(id);
         return new Result<>().success();
     }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Result update(ExamScore examScore){
+        examScoreService.update(examScore);
+        return new Result<>().success();
+    }
 }

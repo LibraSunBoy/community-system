@@ -63,4 +63,9 @@ public class CommunityServiceImpl implements CommunityService {
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
     }
+
+    @Override
+    public void update(Community community) {
+        communityMapper.updateByPrimaryKeySelective(community);
+    }
 }

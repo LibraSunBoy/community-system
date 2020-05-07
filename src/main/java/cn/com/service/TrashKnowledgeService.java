@@ -32,4 +32,10 @@ public interface TrashKnowledgeService {
      */
     void removeList(List<Integer> id);
 
+    /**
+     * 修改
+     * @param trashKnowledge
+     */
+    void update(TrashKnowledge trashKnowledge);
+
 }

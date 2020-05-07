@@ -32,4 +32,10 @@ public interface ExamService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param exam
+     */
+    void update(Exam exam);
 }

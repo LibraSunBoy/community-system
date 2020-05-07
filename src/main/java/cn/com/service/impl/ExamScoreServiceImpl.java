@@ -65,6 +65,11 @@ public class ExamScoreServiceImpl implements ExamScoreService {
         id.stream().forEach(i -> remove(i));
     }
 
+    @Override
+    public void update(ExamScore examScore) {
+        dealForeignKey(examScore);
+        examScoreMapper.updateByPrimaryKeySelective(examScore);
+    }
 
     private void dealForeignKey(ExamScore examScore){
         if (examScore.getExamId()!=null){

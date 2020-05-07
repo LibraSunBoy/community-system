@@ -31,4 +31,10 @@ public interface TrashService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param trash
+     */
+    void update(Trash trash);
 }

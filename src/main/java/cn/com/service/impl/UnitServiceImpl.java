@@ -60,6 +60,12 @@ public class UnitServiceImpl implements UnitService {
         id.stream().forEach(i -> remove(i));
     }
 
+    @Override
+    public void update(Unit unit) {
+        dealForeignKey(unit);
+        unitMapper.updateByPrimaryKeySelective(unit);
+    }
+
     private void dealForeignKey(Unit unit){
         if (unit.getCommunityId()!=null){
             Community community = communityMapper.selectByPrimaryKey(unit.getCommunityId());

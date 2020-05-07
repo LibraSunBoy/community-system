@@ -43,4 +43,10 @@ public interface CommunityService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param community
+     */
+    void update(Community community);
 }

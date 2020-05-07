@@ -1,5 +1,7 @@
 package cn.com.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -30,6 +32,7 @@ public class Exam implements Serializable {
      *
      * @mbggenerated
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date examDate;
 
     /**

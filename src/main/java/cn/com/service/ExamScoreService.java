@@ -31,4 +31,10 @@ public interface ExamScoreService {
      * @param id
      */
     void removeList(List<Integer> id);
+
+    /**
+     * 修改
+     * @param examScore
+     */
+    void update(ExamScore examScore);
 }
