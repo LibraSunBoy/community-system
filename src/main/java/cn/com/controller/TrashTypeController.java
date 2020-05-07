@@ -25,6 +25,13 @@ public class TrashTypeController {
         return list;
     }
 
+    @GetMapping("/usebleList")
+    @ResponseBody
+    public Result<List<TrashType>> usebleList(){
+        Result<List<TrashType>> list = trashTypeService.usebleList();
+        return list;
+    }
+
     @PostMapping("/add")
     @ResponseBody
     public Result add(TrashType trashType){

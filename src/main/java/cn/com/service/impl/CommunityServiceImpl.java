@@ -2,8 +2,6 @@ package cn.com.service.impl;
 
 import cn.com.entity.Community;
 import cn.com.entity.CommunityExample;
-import cn.com.entity.Member;
-import cn.com.entity.MemberExample;
 import cn.com.mapper.CommunityMapper;
 import cn.com.service.CommunityService;
 import cn.com.utils.Result;
@@ -22,7 +20,7 @@ public class CommunityServiceImpl implements CommunityService {
     private CommunityMapper communityMapper;
 
     @Override
-    public Result<List<Community>> query(Integer pageNum, Integer pageSize,String name,String location) {
+    public Result<List<Community>> query(Integer pageNum, Integer pageSize, String name, String location) {
         CommunityExample example = new CommunityExample();
         CommunityExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(name)){

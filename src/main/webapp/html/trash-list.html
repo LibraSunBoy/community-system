@@ -48,7 +48,7 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','./trash-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+                    <button class="layui-btn" onclick="xadmin.open('添加','./trash-add.html',600,400)"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table" lay-data="{url:requestUrl+'/trash/list',method:'get',page:true,limit:20,id:'list'}">
@@ -58,6 +58,9 @@
                             <th lay-data="{field:'id',width:80, sort: true}">ID</th>
                             <th lay-data="{field:'number'}">编号</th>
                             <th lay-data="{field:'trashTypeId'}">分类id</th>
+                            <th lay-data="{field:'trashType'}">分类</th>
+                            <th lay-data="{field:'communityId'}">小区id</th>
+                            <th lay-data="{field:'community'}">小区</th>
                             <th lay-data="{field:'capacity'}">容量</th>
                             <th lay-data="{field:'location'}">位置</th>
                             <th lay-data="{field:'status',templet: '#status'}">状态</th>
@@ -119,7 +122,7 @@
     /*用户-删除*/
     function member_del(id){
         layer.confirm('确认要删除吗？',function(){
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/trash/remove",
@@ -153,7 +156,7 @@
             for(var i = 0;i<data.length;i++){
                 arr.push(data[i].id);
             }
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/trash/removeList",

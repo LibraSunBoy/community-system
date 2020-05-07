@@ -1,7 +1,6 @@
 package cn.com.service;
 
 import cn.com.entity.Community;
-import cn.com.entity.Member;
 import cn.com.utils.Result;
 import org.springframework.web.bind.annotation.RequestParam;
 

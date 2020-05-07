@@ -84,4 +84,10 @@ public class AdminServiceImpl implements AdminService {
     public void update(Admin admin) {
         adminMapper.updateByPrimaryKeySelective(admin);
     }
+
+    @Override
+    public void updatePwd(Admin admin) {
+        admin.setPassword(MD5Util.MD5EncodeUtf8(admin.getPassword()));
+        adminMapper.updateByPrimaryKeySelective(admin);
+    }
 }

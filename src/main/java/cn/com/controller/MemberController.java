@@ -36,7 +36,7 @@ public class MemberController {
 
     @PostMapping("/add")
     @ResponseBody
-    public Result<Integer> add(@RequestBody Member member){
+    public Result<Integer> add(Member member){
         Integer memberId = memberService.add(member);
         return new Result<>(CustomException.CodeEnum.OK,memberId);
     }

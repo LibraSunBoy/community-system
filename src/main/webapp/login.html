@@ -47,6 +47,7 @@
                     success: function (result) {
                         if (result.code == 200) {
                             sessionStorage.setItem("admin_user",result.data.account);
+                            sessionStorage.setItem("admin_id",result.data.id);
                             location.href='html/index.html';
                         } else {
                             alert(result.msg);

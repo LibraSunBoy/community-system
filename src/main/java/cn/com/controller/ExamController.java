@@ -1,7 +1,6 @@
 package cn.com.controller;
 
 import cn.com.entity.Exam;
-import cn.com.entity.ExamScore;
 import cn.com.service.ExamService;
 import cn.com.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;

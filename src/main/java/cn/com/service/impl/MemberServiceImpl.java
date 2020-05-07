@@ -1,13 +1,18 @@
 package cn.com.service.impl;
 
+import cn.com.entity.Community;
 import cn.com.entity.Member;
 import cn.com.entity.MemberExample;
+import cn.com.entity.Unit;
 import cn.com.exception.CustomException;
+import cn.com.mapper.CommunityMapper;
 import cn.com.mapper.MemberMapper;
+import cn.com.mapper.UnitMapper;
 import cn.com.service.MemberService;
 import cn.com.utils.MD5Util;
 import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
+import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -31,6 +36,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Autowired
     private MemberMapper memberMapper;
+
+    @Autowired
+    private UnitMapper unitMapper;
+
+    @Autowired
+    private CommunityMapper communityMapper;
 
     @Override
     public Member login(String account, String pwd) {
@@ -84,6 +95,14 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public void update(Member member) {
+        if (member.getCommunityId()!=null){
+            Community community = communityMapper.selectByPrimaryKey(member.getCommunityId());
+            member.setCommunity(community.getName());
+        }
+        if (member.getUnitId()!=null){
+            Unit unit = unitMapper.selectByPrimaryKey(member.getUnitId());
+            member.setUnit(unit.getName());
+        }
         memberMapper.updateByPrimaryKeySelective(member);
     }
 }

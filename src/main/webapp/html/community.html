@@ -103,7 +103,7 @@
     /*用户-删除*/
     function member_del(id){
         layer.confirm('确认要删除吗？',function(){
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/community/remove",
@@ -137,7 +137,7 @@
             for(var i = 0;i<data.length;i++){
                 arr.push(data[i].id);
             }
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/community/removeList",

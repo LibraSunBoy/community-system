@@ -94,7 +94,6 @@
             success:function(data){
 
                 $.each(data.data,function(index,item){
-                    console.log(item);
                     //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
                     $('#selectId').append(new Option(item.name,item.id));//往下拉菜单里添加元素
                     //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中

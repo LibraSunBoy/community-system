@@ -12,7 +12,13 @@ public interface TrashTypeService {
      * @param
      * @return
      */
-    Result<List<TrashType>> query(Integer pageNum, Integer pageSize,String name);
+    Result<List<TrashType>> query(Integer pageNum, Integer pageSize, String name);
+
+    /**
+     * 查询启用的类别
+     * @return
+     */
+    Result<List<TrashType>> usebleList();
 
     /**
      * 添加

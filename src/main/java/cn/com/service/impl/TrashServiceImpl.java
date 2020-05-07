@@ -1,8 +1,12 @@
 package cn.com.service.impl;
 
+import cn.com.entity.Community;
 import cn.com.entity.Trash;
 import cn.com.entity.TrashExample;
+import cn.com.entity.TrashType;
+import cn.com.mapper.CommunityMapper;
 import cn.com.mapper.TrashMapper;
+import cn.com.mapper.TrashTypeMapper;
 import cn.com.service.TrashService;
 import cn.com.utils.Result;
 import com.github.pagehelper.PageHelper;
@@ -19,8 +23,14 @@ public class TrashServiceImpl implements TrashService {
     @Autowired
     private TrashMapper trashMapper;
 
+    @Autowired
+    private CommunityMapper communityMapper;
+
+    @Autowired
+    private TrashTypeMapper trashTypeMapper;
+
     @Override
-    public Result<List<Trash>> query(Integer pageNum, Integer pageSize,String number,String capacity,String location) {
+    public Result<List<Trash>> query(Integer pageNum, Integer pageSize, String number, String capacity, String location) {
         TrashExample example = new TrashExample();
         TrashExample.Criteria criteria = example.createCriteria();
         if (!StringUtils.isEmpty(number)){
@@ -40,6 +50,7 @@ public class TrashServiceImpl implements TrashService {
 
     @Override
     public void add(Trash trash) {
+        dealForeignKey(trash);
         trash.setCreateDate(new Date());
         trashMapper.insert(trash);
     }
@@ -52,5 +63,16 @@ public class TrashServiceImpl implements TrashService {
     @Override
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
+    }
+
+    private void dealForeignKey(Trash trash){
+        if (trash.getCommunityId()!=null){
+            Community community = communityMapper.selectByPrimaryKey(trash.getCommunityId());
+            trash.setCommunity(community.getName());
+        }
+        if (trash.getTrashTypeId()!=null){
+            TrashType trashType = trashTypeMapper.selectByPrimaryKey(trash.getTrashTypeId());
+            trash.setTrashType(trashType.getName());
+        }
     }
 }

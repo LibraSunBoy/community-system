@@ -20,7 +20,7 @@ public class TrashTypeServiceImpl implements TrashTypeService {
     private TrashTypeMapper trashTypeMapper;
 
     @Override
-    public Result<List<TrashType>> query(Integer pageNum, Integer pageSize,String name) {
+    public Result<List<TrashType>> query(Integer pageNum, Integer pageSize, String name) {
         TrashTypeExample example = new TrashTypeExample();
         if (!StringUtils.isEmpty(name)){
             TrashTypeExample.Criteria criteria = example.createCriteria();
@@ -30,6 +30,15 @@ public class TrashTypeServiceImpl implements TrashTypeService {
         PageHelper.startPage(pageNum,pageSize);
         List<TrashType> memberList = trashTypeMapper.selectByExample(example);
         return new Result<>(memberList1.size(),memberList);
+    }
+
+    @Override
+    public Result<List<TrashType>> usebleList() {
+        TrashTypeExample example = new TrashTypeExample();
+        TrashTypeExample.Criteria criteria = example.createCriteria();
+        criteria.andStatusEqualTo(1L);
+        List<TrashType> memberList = trashTypeMapper.selectByExample(example);
+        return new Result<>().success(memberList);
     }
 
     @Override

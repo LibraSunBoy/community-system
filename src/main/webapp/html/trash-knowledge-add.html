@@ -23,6 +23,18 @@
         <form class="layui-form">
             <div class="layui-form-item">
                 <label class="layui-form-label">
+                    <span class="x-red">*</span>类别
+                </label>
+                <div class="layui-input-inline">
+                    <select id="selectId" name="trashTypeId">
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
                     <span class="x-red">*</span>标题
                 </label>
                 <div class="layui-input-inline">
@@ -47,18 +59,6 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    <span class="x-red">*</span>位置
-                </label>
-                <div class="layui-input-inline">
-                    <input type="date" id="examDate" name="examDate" required="true"
-                           autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid layui-word-aux">
-                    <span class="x-red">*</span>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">
                 </label>
                 <button  class="layui-btn" lay-filter="add" lay-submit="">
                     增加
@@ -73,6 +73,25 @@
             $ = layui.jquery;
             var form = layui.form,
                 layer = layui.layer;
+
+            //动态添加下拉框     同时可以设置默认值
+            $.ajax({
+                url:requestUrl+'/trashType/usebleList',
+                dataType:'json',
+                type:'get',
+                success:function(data){
+
+                    $.each(data.data,function(index,item){
+                        //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+                        $('#selectId').append(new Option(item.name,item.id));//往下拉菜单里添加元素
+                        //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                        if (index==0){
+                            $('#selectId').val(item.id);
+                        }
+                    })
+                    form.render('select'); //刷新表单select选择框渲染
+                }
+            });
 
             //监听提交
             form.on('submit(add)',

@@ -1,8 +1,6 @@
 package cn.com.controller;
 
 import cn.com.entity.Community;
-import cn.com.entity.Member;
-import cn.com.entity.Unit;
 import cn.com.service.CommunityService;
 import cn.com.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;

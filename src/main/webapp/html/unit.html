@@ -57,6 +57,7 @@
                             <th lay-data="{type:'checkbox',width:80}">ID</th>
                             <th lay-data="{field:'id',width:80, sort: true}">ID</th>
                             <th lay-data="{field:'communityId'}">小区ID</th>
+                            <th lay-data="{field:'community'}">小区</th>
                             <th lay-data="{field:'name'}">单元</th>
                             <th lay-data="{field:'floor'}">层</th>
                             <th lay-data="{field:'location'}">位置</th>
@@ -113,7 +114,7 @@
     /*用户-删除*/
     function member_del(id){
         layer.confirm('确认要删除吗？',function(){
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/unit/remove",
@@ -147,7 +148,7 @@
             for(var i = 0;i<data.length;i++){
                 arr.push(data[i].id);
             }
-            $ = layui.jquery;
+            var $ = layui.jquery;
             //发异步删除数据
             $.ajax({
                 url: requestUrl+"/unit/removeList",

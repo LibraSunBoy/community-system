@@ -39,7 +39,7 @@ public class AdminController {
 
     @PostMapping("/add")
     @ResponseBody
-    public Result<Integer> add(@RequestBody Admin admin){
+    public Result<Integer> add(Admin admin){
         Integer adminId = adminService.add(admin);
         return new Result<>(CustomException.CodeEnum.OK,adminId);
     }
@@ -71,6 +71,13 @@ public class AdminController {
     @ResponseBody
     public Result update(Admin admin){
         adminService.update(admin);
+        return new Result<>().success();
+    }
+
+    @PostMapping("/updatePwd")
+    @ResponseBody
+    public Result updatePwd(Admin admin){
+        adminService.updatePwd(admin);
         return new Result<>().success();
     }
 }

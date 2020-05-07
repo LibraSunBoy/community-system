@@ -1,8 +1,9 @@
 package cn.com.service.impl;
 
-import cn.com.entity.MemberExample;
+import cn.com.entity.Community;
 import cn.com.entity.Unit;
 import cn.com.entity.UnitExample;
+import cn.com.mapper.CommunityMapper;
 import cn.com.mapper.UnitMapper;
 import cn.com.service.UnitService;
 import cn.com.utils.Result;
@@ -19,6 +20,9 @@ public class UnitServiceImpl implements UnitService {
 
     @Autowired
     private UnitMapper unitMapper;
+
+    @Autowired
+    private CommunityMapper communityMapper;
 
     @Override
     public Result<List<Unit>> query(Integer pageNum, Integer pageSize,String name,Integer floor,String location) {
@@ -41,6 +45,7 @@ public class UnitServiceImpl implements UnitService {
 
     @Override
     public void add(Unit unit) {
+        dealForeignKey(unit);
         unit.setCreateDate(new Date());
         unitMapper.insert(unit);
     }
@@ -53,5 +58,12 @@ public class UnitServiceImpl implements UnitService {
     @Override
     public void removeList(List<Integer> id) {
         id.stream().forEach(i -> remove(i));
+    }
+
+    private void dealForeignKey(Unit unit){
+        if (unit.getCommunityId()!=null){
+            Community community = communityMapper.selectByPrimaryKey(unit.getCommunityId());
+            unit.setCommunity(community.getName());
+        }
     }
 }

@@ -32,11 +32,12 @@
 
         <javaClientGenerator type="XMLMAPPER" targetPackage="cn.com.mapper"
                              targetProject="src\main\java"/>
-        <!--生成全部表tableName设为%-->
-<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
-<!--        </table>-->
-        <table tableName="%">
+        <!--生成全部表-->
+        <table tableName="unit">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+<!--        <table tableName="%">-->
+<!--            <generatedKey column="id" sqlStatement="MySql" identity="true"/>-->
+<!--        </table>-->
     </context>
 </generatorConfiguration>

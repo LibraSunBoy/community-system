@@ -26,25 +26,23 @@
         <!-- 顶部开始 -->
         <div class="container">
             <div class="logo">
-                <a href="./index.html">X-admin v2.2</a></div>
+                <a href="javascript:;">X-admin v2.2</a></div>
             <div class="left_open">
                 <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
             </div>
             <ul class="layui-nav right" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">admin</a>
+                    <a href="javascript:;" id="admin">admin</a>
                     <dl class="layui-nav-child">
                         <!-- 二级菜单 -->
-<!--                        <dd>-->
-<!--                            <a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a></dd>-->
-<!--                        <dd>-->
-<!--                            <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>-->
                         <dd>
-                            <a href="./login.html">退出</a></dd>
+                            <a onclick="xadmin.open('修改密码','member-password.html')">修改密码</a></dd>
+                        <dd>
+                            <a href="../login.html">退出</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item to-index">
-                    <a href="/">前台首页</a></li>
+                    </li>
             </ul>
         </div>
         <!-- 顶部结束 -->
@@ -101,9 +99,9 @@
                                     <cite>类别页面</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('垃圾页面','trash-list.html')">
+                                <a onclick="xadmin.add_tab('垃圾桶页面','trash-list.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>垃圾页面</cite></a>
+                                    <cite>垃圾桶页面</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('垃圾小知识页面','trash-knowledge-list.html')">
@@ -149,5 +147,11 @@
         </div>
         <div class="page-content-bg"></div>
     </body>
-
+    <script>
+        layui.use('table', function() {
+            var $ = layui.$;
+            var admin_user = sessionStorage.getItem("admin_user");
+            $('#admin').html(admin_user);
+        })
+    </script>
 </html>

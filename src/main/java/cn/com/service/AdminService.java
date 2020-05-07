@@ -58,4 +58,10 @@ public interface AdminService {
      * @param admin
      */
     void update(Admin admin);
+
+    /**
+     * 修改
+     * @param admin
+     */
+    void updatePwd(Admin admin);
 }
