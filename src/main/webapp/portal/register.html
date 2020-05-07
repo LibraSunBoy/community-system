@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/login.css" />
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_834685_1feh8s3rv5u.css" />
 		<script  type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script src="./../js/request.js" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -31,11 +32,14 @@
 					</li>
 				</ul>
 				<div class="login_right">
-                    <div>
-                        <a href="login.html">登录</a>  
-                        <span>/</span>
-                        <a href="register.html">注册</a>
-                    </div>
+					<div id="loginBefore">
+						<a href="login.html">登录</a>
+						<span>/</span>
+						<a href="register.html">注册</a>
+					</div>
+					<div id="loginAfter">
+						<a href="login.html" id="admin_user"></a>
+					</div>
                </div>				
 			</div>
 		</header>
@@ -137,6 +141,52 @@
 			
 		</div>
 	</body>
-	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var name = sessionStorage.getItem("userName");
+			if (name!=null){
+				$("admin_user").html(name);
+				$("loginBefore").hide();
+				$("loginAfter").show();
+			}else {
+				$("loginAfter").hide();
+				$("loginBefore").show();
+			}
+
+			$("#toregister").click(function(){
+				var account = $('#username').val();
+				var pwd = $('#password').val();
+				var repass = $('#repassword').val();
+				if (account==""){
+					alert("账号不能为空！");
+					return;
+				}
+				if (pwd==""){
+					alert("密码不能为空！");
+					return;
+				}
+				if (repass==""){
+					alert("确认密码不能为空！");
+					return;
+				}
+				if (pwd!=repass) {
+					alert("两次密码不一致！");
+					return;
+				}
+				$.post(requestUrl+"/member/add",
+						{
+							account:account,
+							password:pwd
+						},
+						function(data,status){
+							if (data.code=200){
+								window.location="login.html";
+							} else {
+								alert(data.msg);
+							}
+						});
+			});
+		});
+	</script>
 
 </html>
