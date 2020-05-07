@@ -22,3 +22,11 @@ tomcat版本：8.5.49
 3）发布垃圾分类学习和小测试内容；
 4）评价管理：对用户积分进行统计，生成列表，并给予评价；
 5）基础信息维护：垃圾桶类型、社区楼盘、单元等维护；
+
+
+document中admin.sql文件是数据库文件，可在MySQL中运行
+
+后台地址：http://localhost:8080/项目名/html/index.html
+
+前台地址：http://localhost:8080/项目名/portal/index.html
+
