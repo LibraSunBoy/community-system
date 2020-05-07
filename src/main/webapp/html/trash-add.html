@@ -35,10 +35,22 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    <span class="x-red">*</span>单元
+                    <span class="x-red">*</span>分类
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="name" name="name" required="true"
+                    <select id="trashTypeId" name="trashTypeId">
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>编号
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="number" name="number" required="true" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -47,10 +59,10 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">
-                    <span class="x-red">*</span>层
+                    <span class="x-red">*</span>容量
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="floor" name="floor" required="true"
+                    <input type="text" id="capacity" name="capacity" required="true" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
@@ -62,11 +74,26 @@
                     <span class="x-red">*</span>位置
                 </label>
                 <div class="layui-input-inline">
-                    <input type="text" id="location" name="location" required="true"
+                    <input type="text" id="location" name="location" required="true" lay-verify="required"
                            autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid layui-word-aux">
                     <span class="x-red">*</span>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">
+                    <span class="x-red">*</span>状态
+                </label>
+                <div class="layui-input-inline">
+                    <select id="status" name="status">
+                        <option value="0">空</option>
+                        <option value="1" selected="">未满</option>
+                        <option value="2">已满</option>
+                    </select>
+                </div>
+                <div class="layui-form-mid layui-word-aux">
+
                 </div>
             </div>
             <div class="layui-form-item">
@@ -101,9 +128,27 @@
                             $('#selectId').val(item.id);
                         }
                     })
+                    form.render('select'); //刷新表单select选择框渲染
+                }
+            });
 
-                    form.render(); //更新全部表单内容
-                    //form.render('select'); //刷新表单select选择框渲染
+
+            //动态添加下拉框     同时可以设置默认值
+            $.ajax({
+                url:requestUrl+'/trashType/usebleList',
+                dataType:'json',
+                type:'get',
+                success:function(data){
+
+                    $.each(data.data,function(index,item){
+                        //option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+                        $('#trashTypeId').append(new Option(item.name,item.id));//往下拉菜单里添加元素
+                        //设置value（这个值就可以是在更新的时候后台传递到前台的值）为2的值为默认选中
+                        if (index==0){
+                            $('#trashTypeId').val(item.id);
+                        }
+                    })
+                    form.render('select'); //刷新表单select选择框渲染
                 }
             });
 

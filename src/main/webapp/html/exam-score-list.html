@@ -49,9 +49,9 @@
                         <tr>
                             <th lay-data="{type:'checkbox',width:80}">ID</th>
                             <th lay-data="{field:'id',width:80, sort: true}">ID</th>
-                            <th lay-data="{field:'memberId'}">用户id</th>
+                            <th lay-data="{field:'memberId',hide:true}">用户id</th>
                             <th lay-data="{field:'nickName'}">用户昵称</th>
-                            <th lay-data="{field:'examId'}">测验id</th>
+                            <th lay-data="{field:'examId',hide:true}">测验id</th>
                             <th lay-data="{field:'title'}">标题</th>
                             <th lay-data="{field:'score'}">成绩</th>
                             <th lay-data="{field:'createDate', templet: function(d){return layui.laytpl.toDateString(d.createDate)}}">创建时间</th>
