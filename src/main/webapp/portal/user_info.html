@@ -10,159 +10,230 @@
 		<link rel="stylesheet" href="//at.alicdn.com/t/font_834685_1feh8s3rv5u.css" />
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/unslider.min.js"></script>
+		<script src="./../js/request.js" charset="utf-8"></script>
 	</head>
 	<body>
 		<!--上导航 -->
-		<div class='ucenter-nav clearfix'>
-			<div class='container clearfix'>
-				<h2><a href="index.html"><img src="img/logo.png" alt="" /></a></h2>
-				<div class='ucenter-title'>
-					<h3>个人中心</h3>
-					<a href="index.html">返回商城首页</a>
-				</div>
-				<ul class='ucenter-nav-main'>
-					<li class='li-f'><a href="usercenter.html">首页</a></li>
-					<li class='li-f'><a href="user-info.html">账户设置</a></li>
-					<li class='li-f'><a href="message-center.html">消息</a></li>
-				</ul>
-				<div class='ucenter-nav-search'>
-					<form action="">
-						<input type="text" placeholder="pvp"/>
-						<input class='search-font' type="submit"  value='搜索'/>
-					</form>
-				</div>
-				
-			</div>
-		</div>
+<!--		<div class='ucenter-nav clearfix'>-->
+<!--			<div class='container clearfix'>-->
+<!--				<h2><a href="index.html"><img src="img/logo.png" alt="" /></a></h2>-->
+<!--				<div class='ucenter-title'>-->
+<!--					<h3>个人中心</h3>-->
+<!--					<a href="index.html">返回商城首页</a>-->
+<!--				</div>-->
+<!--				<ul class='ucenter-nav-main'>-->
+<!--					<li class='li-f'><a href="usercenter.html">首页</a></li>-->
+<!--					<li class='li-f'><a href="user-info.html">账户设置</a></li>-->
+<!--					<li class='li-f'><a href="message-center.html">消息</a></li>-->
+<!--				</ul>-->
+<!--				<div class='ucenter-nav-search'>-->
+<!--					<form action="">-->
+<!--						<input type="text" placeholder="pvp"/>-->
+<!--						<input class='search-font' type="submit"  value='搜索'/>-->
+<!--					</form>-->
+<!--				</div>-->
+
+<!--			</div>-->
+<!--		</div>-->
 		<!--左导航-->
-			
+
+
+		<header class="header">
+			<div class="container">
+				<a class="logo" href="index.html">
+					<img src="img/logo.png" />
+				</a>
+				<ul class="navigate cl">
+					<li>
+						<a href="index.html">网站首页</a>
+					</li>
+					<li class="">
+						<a href="Classify_List.html">分类查询</a>
+					</li>
+					<li class="">
+						<a href="about.html">关于我们</a>
+					</li>
+					<li class="selected">
+						<a href="user_info.html">用户中心</a>
+					</li>
+				</ul>
+				<div class="login_right">
+					<div id="loginBefore" style="display: none">
+						<a href="login.html">登录</a>
+						<span>/</span>
+						用户名：<a href="register.html">注册</a>
+					</div>
+					<div id="loginAfter" style="display: none">
+						<a href="user_info.html" id="admin_user"></a>
+					</div>
+				</div>
+			</div>
+		</header>
+
 		<!--主体-->
 		<div class='ucenter-wrapper'>
 			<div class="container clearfix ">
 				<!--左导航-->
 				<div class='ucenter-left  clearfix'>
-					
+
 					<div>
 						<h3>个人中心</h3>
-						<ul class='firstList'>
-							<li><a href="user-info.html">个人信息</a></li>
-							<li><a href="account-safe.html">账户安全</a></li>
-							<li><a href="address.html">小区地址</a></li>
-							<li><a href="level.html">我的级别</a></li>
-						</ul>
+<!--						<ul class='firstList'>-->
+<!--							<li><a href="user-info.html">个人信息</a></li>-->
+<!--							<li><a href="account-safe.html">账户安全</a></li>-->
+<!--							<li><a href="address.html">小区地址</a></li>-->
+<!--							<li><a href="level.html">我的级别</a></li>-->
+<!--						</ul>-->
 					</div>
-					
+
 				</div>
 				<div class='ucenter-right clearfix fl'>
 					<!--具体内容-->
 					<div class='user-info'>
 						<ul class='user-info-swt clearfix '>
 							<li class='active'>基本信息</li>
-							<li>头像照片</li>
+<!--							<li>头像照片</li>-->
 						</ul>
 						<div class='change-info second-wrapper on'>
 							<ul>
 								<li>
 									<span class='change-info-sp'>用户名 :</span>
 									<div>
-										<i>熊大</i>
+										<i id="account">熊大</i>
 									</div>
-									
 								</li>
 								<li>
 									<span class='change-info-sp'>昵称 :</span>
 									<div>
-										<input type="text" value='熊大'/>
+										<input type="text" id="nickName"/>
 									</div>
-									
 								</li>
 								<li>
 									<span class='change-info-sp'>性别 :</span>
 									<div>
-										<input type="radio" name='sex'/>
-										<label for="">男</label>
-										<input type="radio" name='sex' />
-										<label for="">女</label>
-										<input type="radio" name='sex' />
+										<input type="radio" name='sex' value="0"/>
 										<label for="">保密</label>
+										<input type="radio" name='sex' value="1"/>
+										<label for="">男</label>
+										<input type="radio" name='sex' value="2"/>
+										<label for="">女</label>
 									</div>
-									
 								</li>
+<!--								<li>-->
+<!--									<span class='change-info-sp'>生日 :</span>-->
+<!--									<div class='birthday'>-->
+<!--										<input type="text"  id="year"/>年-->
+<!--										<input type="text"  id="month"/>月-->
+<!--										<input type="text"  id="day"/>日-->
+<!--									</div>-->
+<!--								</li>-->
 								<li>
-									<span class='change-info-sp'>生日 :</span>
-									<div class='birthday'>
-										<input type="text"  />：年
-										<input type="text"  />：月
-										<input type="text"  />：日
+									<span class='change-info-sp'>手机号 :</span>
+									<div>
+										<input type="text" id="mobile"/>
 									</div>
 								</li>
 								<li>
 									<span class='change-info-sp'>邮箱 :</span>
 									<div>
-										1111@86.com
+										<input type="text" id="email"/>
 									</div>
 								</li>
+								<li>
+									<span class='change-info-sp'>地址 :</span>
+									<div class='birthday'>
+										<input type="text"  id="province"/>省
+										<input type="text"  id="city"/>市
+										<input type="text"  id="area"/>区
+										<input type="text"  id="street"/>街道
+									</div>
+								</li>
+								<li>
+									<span class='change-info-sp'>小区 :</span>
+									<select name="community" id="community" onchange="updateUnit(1,this.value)">
+
+									</select>
+								</li>
+								<li>
+									<span class='change-info-sp'>单元 :</span>
+									<select name="unit" id="unit" onchange="updateFloor(1,this.value,null)">
+
+									</select>
+								</li>
+								<li>
+									<span class='change-info-sp'>楼层 :</span>
+									<select name="floor" id="floor">
+
+									</select>
+								</li>
+								<li>
+									<span class='change-info-sp'>房间号 :</span>
+									<div>
+										<input type="text" id="room"/>
+									</div>
+								</li>
+
 							</ul>
 							<div class='change-info-sub'>
-								<button>提交</button>
+								<button id="formSubmit">提交</button>
 							</div>
-							<div class='uinfo-head'>
-								<div class='my-head'>
-									<img src="../img/header.png"/>
-								</div>
-								<ul>
-									<li>用户名:小鑫AZZ</li>
-									<li>铜牌会员</li>
-									<li>会员类型:个人用户</li>
-									<li>等级:vip8</li>
-								</ul>
-							</div>
+<!--							<div class='uinfo-head'>-->
+<!--								<div class='my-head'>-->
+<!--									<img src="../img/header.png"/>-->
+<!--								</div>-->
+<!--								<ul>-->
+<!--									<li>用户名:小鑫AZZ</li>-->
+<!--									<li>铜牌会员</li>-->
+<!--									<li>会员类型:个人用户</li>-->
+<!--									<li>等级:vip8</li>-->
+<!--								</ul>-->
+<!--							</div>-->
 						</div>
-						<div class='change-head second-wrapper ';>
-							<div class='upload-img'>
-								<p id='upload-img-btn'>请选择您要上传的头像</p>
-								<input type="file" name="" id="" value=""  style='display: none;'/ >
-								<i>仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</i>
-							</div>
-							<div class='big-header'>
-								<img src="../assets/img/s5s4.png" alt="" width="150" />
-							</div>
-							<div class='def-head'> 
-								<h4>推荐头像</h4>
-								<ul class='clearfix'>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img  width="50" height="50"src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>
-								</ul>	
-							</div>
-							<div>
-								<button style='background-color: #EBF7E3;margin-top: 25px;border: 1px solid #BFD6AF;'>保存</button>
-							</div>
-							
-							<div class='head-preview'>
-							<h4>效果预览</h4>
-							<p>你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰</p>
-							<div>
-								<img src="../assets/img/s5s4.png" alt=""  width="100"/>
-								<i>100*100像素</i>
-							</div>
-							<div>
-								<img src="../assets/img/s5s4.png" alt=""  width="50"/>
-								<i>50*50像素</i>
-							</div>
+<!--						<div class='change-head second-wrapper ';>-->
+<!--							<div class='upload-img'>-->
+<!--								<p id='upload-img-btn'>请选择您要上传的头像</p>-->
+<!--								<input type="file" name="" id="" value=""  style='display: none;'/ >-->
+<!--								<i>仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</i>-->
+<!--							</div>-->
+<!--							<div class='big-header'>-->
+<!--								<img src="../assets/img/s5s4.png" alt="" width="150" />-->
+<!--							</div>-->
+<!--							<div class='def-head'> -->
+<!--								<h4>推荐头像</h4>-->
+<!--								<ul class='clearfix'>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img  width="50" height="50"src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--									<li><img width="50" height="50" src="../assets/img/1.jpg" alt="" /></li>-->
+<!--								</ul>	-->
+<!--							</div>-->
+<!--							<div>-->
+<!--								<button style='background-color: #EBF7E3;margin-top: 25px;border: 1px solid #BFD6AF;'>保存</button>-->
+<!--							</div>-->
+<!--							-->
+<!--							<div class='head-preview'>-->
+<!--							<h4>效果预览</h4>-->
+<!--							<p>你上传的图片会自动生成2种尺寸，请注意小尺寸的头像是否清晰</p>-->
+<!--							<div>-->
+<!--								<img src="../assets/img/s5s4.png" alt=""  width="100"/>-->
+<!--								<i>100*100像素</i>-->
+<!--							</div>-->
+<!--							<div>-->
+<!--								<img src="../assets/img/s5s4.png" alt=""  width="50"/>-->
+<!--								<i>50*50像素</i>-->
+<!--							</div>-->
+<!--						</div>-->
 						</div>
-						</div>
-						
+
 					</div>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer">
@@ -212,7 +283,7 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer_extra">
@@ -222,8 +293,197 @@
 					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
 			</div>
 			</div>
-			
-		</div>		
+
+		</div>
 	</body>
-	
+	<script type="text/javascript">
+		function updateCommunity(){
+			$.get(requestUrl+"/community/allList",
+					function(data){
+						if (data.code=200){
+							$.each(data.data,function(index,item){
+								//option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+								$('#community').append(new Option(item.name,item.id));//往下拉菜单里添加元素
+							})
+						}
+					});
+		}
+		function updateUnit(status,commounityId){
+				if (commounityId == null || commounityId==""){
+					commounityId = $('#community').val();
+				}
+			$.post(requestUrl+"/unit/getByCommunityId",
+					{
+						communityId:commounityId
+					},
+					function(data){
+						if (data.code=200){
+							$('#unit').html("");
+							$.each(data.data,function(index,item){
+								//option  第一个参数是页面显示的值，第二个参数是传递到后台的值
+								$('#unit').append(new Option(item.name,item.id));//往下拉菜单里添加元素
+							})
+							if (status==1){
+								$('#unit').val(data.data[0].id);
+								$('#floor').val(1);
+							}
+							updateFloor(status,data.data[0].id,data.data[0].floor)
+						}
+					});
+		}
+		function updateFloor(status,id,floor){
+			if (status==1){
+				if (id == null || id==""){
+					id = $('#unit').val();
+				}
+				$.post(requestUrl+"/unit/getById",
+						{
+							id:id
+						},
+						function(data){
+							if (data.code=200){
+								$('#floor').html("");
+								var floor=data.data.floor;
+								for ( var i=1;i<=floor;i++){
+									$('#floor').append(new Option(i,i));//往下拉菜单里添加元素
+								}
+							}
+						});
+			} else{
+				$('#floor').html("");
+				for ( var i=1;i<=floor;i++){
+					$('#floor').append(new Option(i,i));//往下拉菜单里添加元素
+				}
+			}
+		}
+		$(document).ready(function(){
+			var name = sessionStorage.getItem("userName");
+			if (name!=null){
+				$("#admin_user").html(name);
+				$("#loginBefore").hide();
+				$("#loginAfter").show();
+
+				updateCommunity();
+
+				var id = sessionStorage.getItem("userId");
+				$.post(requestUrl+"/member/getById",
+				{
+					id:id
+				},
+				function(data){
+					if (data.code=200){
+						$('#community').val(data.data.communityId);
+						$("#account").html(data.data.account);
+						$("#nickName").val(data.data.nickName);
+						$('input[name="sex"][value="'+data.data.gender+'"]').prop("checked",true);
+						$("#email").val(data.data.email);
+						$("#mobile").val(data.data.mobile);
+
+						$("#province").val(data.data.province);
+						$("#city").val(data.data.city);
+						$("#area").val(data.data.area);
+						$("#street").val(data.data.street);
+						updateUnit(0,data.data.communityId);
+
+						$('#unit').val(data.data.unitId);
+						$('#room').val(data.data.room);
+						 // updateFloor(0,data.data.unitId,); "
+						$('#floor').val(data.data.floor);
+
+
+					}
+				});
+			}else {
+				window.location="login.html";
+			}
+
+
+			$("#formSubmit").click(function(){
+				var id = sessionStorage.getItem("userId");
+				var nickName = $("#nickName").val();
+				var sex = $("input[type='radio']:checked").val();
+				var email = $("#email").val();
+				var mobile = $("#mobile").val();
+				var province = $("#province").val();
+				var city = $("#city").val();
+				var area = $("#area").val();
+				var street = $("#street").val();
+				var communityId = $('#community').val();
+				var unitId = $('#unit').val();
+				var floor = $('#floor').val();
+				var room = $('#room').val();
+				if (nickName==null || nickName==""){
+					alert("昵称不能为空！");
+					return;
+				}
+				if (sex==null || sex==""){
+					alert("性别不能为空！");
+					return;
+				}
+				if (email==null || email==""){
+					alert("邮箱不能为空！");
+					return;
+				}
+				if (mobile==null || mobile==""){
+					alert("手机号不能为空！");
+					return;
+				}
+				if (province==null || province==""){
+					alert("省份不能为空！");
+					return;
+				}
+				if (city==null || city==""){
+					alert("市不能为空！");
+					return;
+				}if (area==null || area==""){
+					alert("区不能为空！");
+					return;
+				}if (street==null || street==""){
+					alert("街道不能为空！");
+					return;
+				}
+				if (communityId==null || communityId==""){
+					alert("小区不能为空！");
+					return;
+				}
+				if (unitId==null || unitId==""){
+					alert("单元不能为空！");
+					return;
+				}if (floor==null || floor==""){
+					alert("楼层不能为空！");
+					return;
+				}if (room==null || room==""){
+					alert("房间号不能为空！");
+					return;
+				}
+
+
+				$.post(requestUrl+"/member/update",
+						{
+							id:id,
+							nickName:nickName,
+							gender:sex,
+							email:email,
+							mobile:mobile,
+							province:province,
+							city:city,
+							area:area,
+							street:street,
+							communityId:communityId,
+							unitId:unitId,
+							floor:floor,
+							room:room
+						},
+						function(data){
+							if (data.code=200){
+								alert("操作成功！");
+							} else {
+								alert(data.msg);
+							}
+						});
+
+			})
+
+		});
+	</script>
 </html>

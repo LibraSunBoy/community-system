@@ -37,7 +37,7 @@ public class Member implements Serializable {
      *
      * @mbggenerated
      */
-    private Boolean gender;
+    private Integer gender;
 
     /**
      * 邮箱
@@ -178,11 +178,11 @@ public class Member implements Serializable {
         this.nickName = nickName;
     }
 
-    public Boolean getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(Boolean gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 

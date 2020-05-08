@@ -49,6 +49,33 @@ public class TrashServiceImpl implements TrashService {
     }
 
     @Override
+    public Result<List<Trash>> findList(Integer communityId, Integer status, Integer trashTypeId) {
+        TrashExample example = new TrashExample();
+        TrashExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(communityId)){
+            criteria.andCommunityIdEqualTo(communityId);
+        }
+        if (!StringUtils.isEmpty(status)){
+            criteria.andStatusEqualTo(status.longValue());
+        }
+        if (!StringUtils.isEmpty(trashTypeId)){
+            criteria.andTrashTypeIdEqualTo(trashTypeId);
+        }
+        List<Trash> memberList = trashMapper.selectByExample(example);
+        return new Result<>().success(memberList);
+    }
+
+    //    @Override
+//    public Result<List<Trash>> getLocation() {
+//        TrashExample example = new TrashExample();
+//        example.setDistinct(true);
+//        TrashExample.Criteria criteria = example.createCriteria();
+//        criteria.andLocationIsNotNull();
+//        List<Trash> memberList = trashMapper.selectByExample(example);
+//        return new Result<>().success(memberList);
+//    }
+
+    @Override
     public void add(Trash trash) {
         dealForeignKey(trash);
         trash.setCreateDate(new Date());

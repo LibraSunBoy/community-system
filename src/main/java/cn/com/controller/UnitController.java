@@ -27,6 +27,21 @@ public class UnitController {
         return list;
     }
 
+    @PostMapping("/getByCommunityId")
+    @ResponseBody
+    public Result<List<Unit>> getByCommunityId(@RequestParam(value = "communityId")Integer communityId,
+                                    @RequestParam(value = "name",required = false)String name){
+        Result<List<Unit>> list = unitService.getByCommunityId(communityId,name);
+        return list;
+    }
+
+    @PostMapping("/getById")
+    @ResponseBody
+    public Result<Unit> getById(@RequestParam(value = "id")Integer id){
+        Unit list = unitService.getById(id);
+        return new Result<>().success(list);
+    }
+
 
     @PostMapping("/add")
     @ResponseBody

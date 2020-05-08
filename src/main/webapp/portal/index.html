@@ -31,15 +31,15 @@
 					</li>
 				</ul>
 				<div class="login_right">
-					<div id="loginBefore">
+					<div id="loginBefore" style="display: none">
 						<a href="login.html">登录</a>
 						<span>/</span>
 						<a href="register.html">注册</a>
 					</div>
-					<div id="loginAfter">
-						<a href="login.html" id="admin_user"></a>
+					<div id="loginAfter" style="display: none">
+						用户名：<a href="user_info.html" id="admin_user"></a>
 					</div>
-               </div>				
+               </div>
 			</div>
 		</header>
 		<!--banner轮播图 -->
@@ -60,68 +60,68 @@
 		<!--服务-->
 		<div class="index_one">
 			<div class="container">
-				<ul>
-					<li>
-						<div class="item">
-							<div class="img">
-								<span class="icon iconfont">&#xe76b;</span>
-							</div>
-							<span class="title">
-							可回收物
-							</span>
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<div class="img">
-								<span class="icon iconfont icon-weibiaoti-"></span>
-							</div>
-							<span class="title">
-								有害垃圾
-							</span>
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<div class="img">
-								<span class="icon iconfont icon-hailiang"></span>
-							</div>
-							<span class="title">
-								干垃圾
-							</span>
-						</div>
-					</li>
-					<li>
-						<div class="item">
-							<div class="img">
-								<span class="icon iconfont icon-fuwu"></span>
-							</div>
-							<span class="title">
-								湿垃圾
-							</span>
-						</div>
-					</li>
+				<ul id="content">
+<!--					<li>-->
+<!--						<div class="item">-->
+<!--							<div class="img">-->
+<!--								<span class="icon iconfont">&#xe76b;</span>-->
+<!--							</div>-->
+<!--							<span class="title">-->
+<!--							可回收物-->
+<!--							</span>-->
+<!--						</div>-->
+<!--					</li>-->
+<!--					<li>-->
+<!--						<div class="item">-->
+<!--							<div class="img">-->
+<!--								<span class="icon iconfont icon-weibiaoti-"></span>-->
+<!--							</div>-->
+<!--							<span class="title">-->
+<!--								有害垃圾-->
+<!--							</span>-->
+<!--						</div>-->
+<!--					</li>-->
+<!--					<li>-->
+<!--						<div class="item">-->
+<!--							<div class="img">-->
+<!--								<span class="icon iconfont icon-hailiang"></span>-->
+<!--							</div>-->
+<!--							<span class="title">-->
+<!--								干垃圾-->
+<!--							</span>-->
+<!--						</div>-->
+<!--					</li>-->
+<!--					<li>-->
+<!--						<div class="item">-->
+<!--							<div class="img">-->
+<!--								<span class="icon iconfont icon-fuwu"></span>-->
+<!--							</div>-->
+<!--							<span class="title">-->
+<!--								湿垃圾-->
+<!--							</span>-->
+<!--						</div>-->
+<!--					</li>-->
 				</ul>
 			</div>
 		</div>
 		<div class="index_two">
-			<div class="container">
-				<div class="title">
-					<h1>可回收</h1>
-					<span class="line"></span>
-					<div class="txt">
-						为你精选
-					</div>
-					<a class="more" href="House_List.html">
-						更多>
-					</a>
-				</div>
-				<div class="main">
-					<ul id="content">					
-						
-						
-					</ul>
-				</div>
+			<div class="container" id="allList">
+<!--				<div class="title">-->
+<!--					<h1>可回收</h1>-->
+<!--					<span class="line"></span>-->
+<!--					<div class="txt">-->
+<!--						为你精选-->
+<!--					</div>-->
+<!--					<a class="more" href="House_List.html">-->
+<!--						更多>-->
+<!--					</a>-->
+<!--				</div>-->
+<!--				<div class="main">-->
+<!--					<ul id="content">-->
+
+
+<!--					</ul>-->
+<!--				</div>-->
 			</div>
 		</div>
 		<div class="footer">
@@ -171,7 +171,7 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer_extra">
@@ -181,7 +181,7 @@
 					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
 			</div>
 			</div>
-			
+
 		</div>
 <script type="text/javascript">
 	$('.banner').unslider({
@@ -191,45 +191,60 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				var name = sessionStorage.getItem("userName");
-				alert(name!=null)
 				if (name!=null){
-					alert(1)
-					$("admin_user").html(name);
-					$("loginBefore").hide();
-					$("loginAfter").show();
+					$("#admin_user").html(name);
+					$("#loginBefore").hide();
+					$("#loginAfter").show();
 				}else {
-					alert(2)
-					$("loginAfter").hide();
-					$("loginBefore").show();
+					$("#loginAfter").hide();
+					$("#loginBefore").show();
 				}
 
-				$("#btn_Login").click(function(){
-					var account = $('#username').val();
-					var pwd = $('#password').val();
-					if (account==""){
-						alert("账号不能为空！");
-						return;
-					}
-					if (pwd==""){
-						alert("密码不能为空！");
-						return;
-					}
-					$.post(requestUrl+"/member/login",
-							{
-								account:account,
-								pwd:pwd
-							},
-							function(data,status){
-								if (data.code=200){
-									sessionStorage.setItem("userName",data.data.account);
-									sessionStorage.setItem("userId",data.data.id);
-									window.location="index.html";
-								} else {
-									alert(data.msg);
+					$.get(requestUrl+"/trashType/usebleList",
+						function(data){
+							if (data.code=200){
+								findList(data.data[0].id);
+								var list='';
+								if (data.data.length>0){
+									$.each(data.data,function(index,item){
+										list+='<li onclick="findList('+item.id+')">';
+										list+='	<span class="title">';
+										list+='		'+item.name+'';
+										list+='	</span>';
+										list+='</li>';
+									})
 								}
-							});
-				});
+								$("#content").html(list);
+							} else {
+								alert(data.msg);
+							}
+						});
 			});
+
+			function findList(id) {
+				$.post(requestUrl+"/trashKnowledge/getByTypeId",
+						{id:id},
+						function(data){
+							if (data.code=200){
+								var list='';
+								if (data.data.length>0){
+									$.each(data.data,function(index,item){
+										list+='<li>';
+										list+='	<div class="title">';
+										list+='		'+item.title+'';
+										list+='	</div>';
+										list+='	<div class="main">';
+										list+='		'+item.content+'';
+										list+='	</div>';
+										list+='</li>';
+									})
+								}
+								$("#allList").html(list);
+							} else {
+								alert(data.msg);
+							}
+						});
+			}
 		</script>
 	</body>
 </html>

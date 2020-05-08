@@ -14,6 +14,8 @@ public interface TrashKnowledgeService {
      */
     Result<List<TrashKnowledge>> query(Integer pageNum, Integer pageSize, Integer trashTypeId, String title);
 
+
+    Result<List<TrashKnowledge>> getByTypeId(Integer id);
     /**
      * 添加
      * @param trashKnowledge

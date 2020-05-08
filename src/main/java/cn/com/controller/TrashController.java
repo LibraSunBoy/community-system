@@ -25,6 +25,22 @@ public class TrashController {
         Result<List<Trash>> list = trashService.query(pageNum, pageSize,number,capacity,location);
         return list;
     }
+    @PostMapping("/findList")
+    @ResponseBody
+    public Result<List<Trash>> findList(@RequestParam(value = "communityId",required = false) Integer communityId,
+                                     @RequestParam(value = "status",required = false)Integer status,
+                                     @RequestParam(value = "trashTypeId",required = false)Integer trashTypeId){
+        Result<List<Trash>> list = trashService.findList(communityId, status,trashTypeId);
+        return list;
+    }
+
+
+//    @GetMapping("/getLocation")
+//    @ResponseBody
+//    public Result<List<Trash>> getLocation(){
+//        Result<List<Trash>> list = trashService.getLocation();
+//        return list;
+//    }
 
     @PostMapping("/add")
     @ResponseBody

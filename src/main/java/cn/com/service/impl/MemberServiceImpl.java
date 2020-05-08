@@ -84,6 +84,12 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member getById(Integer id) {
+        Member member = memberMapper.selectByPrimaryKey(id);
+        return member;
+    }
+
+    @Override
     public void remove(Integer id) {
         memberMapper.deleteByPrimaryKey(id);
     }

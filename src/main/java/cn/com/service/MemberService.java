@@ -41,6 +41,8 @@ public interface MemberService {
      */
     Result<List<Member>> query(Integer pageNum, Integer pageSize, String nickName, String mobile);
 
+    Member getById(Integer id);
+
     /**
      * 单个删除
      * @param id

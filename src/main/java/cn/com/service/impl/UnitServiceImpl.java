@@ -44,6 +44,25 @@ public class UnitServiceImpl implements UnitService {
     }
 
     @Override
+    public Result<List<Unit>> getByCommunityId(Integer communityId, String name) {
+        UnitExample example = new UnitExample();
+        UnitExample.Criteria criteria = example.createCriteria();
+        if (!StringUtils.isEmpty(communityId)){
+            criteria.andCommunityIdEqualTo(communityId);
+        }
+        if (!StringUtils.isEmpty(name)){
+            criteria.andNameEqualTo(name);
+        }
+        List<Unit> memberList = unitMapper.selectByExample(example);
+        return new Result<>().success(memberList);
+    }
+
+    @Override
+    public Unit getById(Integer id) {
+        return unitMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
     public void add(Unit unit) {
         dealForeignKey(unit);
         unit.setCreateDate(new Date());

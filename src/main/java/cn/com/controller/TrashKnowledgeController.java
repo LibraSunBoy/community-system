@@ -27,6 +27,13 @@ public class TrashKnowledgeController {
         return list;
     }
 
+    @PostMapping("/getByTypeId")
+    @ResponseBody
+    public Result<List<TrashKnowledge>> getByTypeId(@RequestParam(value = "id") Integer id){
+        Result<List<TrashKnowledge>> list = trashKnowledgeService.getByTypeId(id);
+        return list;
+    }
+
     @PostMapping("/add")
     @ResponseBody
     public Result add(TrashKnowledge trashKnowledge){

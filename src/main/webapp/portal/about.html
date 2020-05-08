@@ -39,16 +39,16 @@
 						<a href="register.html">注册</a>
 					</div>
 					<div id="loginAfter">
-						<a href="login.html" id="admin_user"></a>
+						用户名：<a href="user_info.html" id="admin_user"></a>
 					</div>
-               </div>				
+               </div>
 			</div>
 		</header>
 		<div class="banner">
 			<div class="container">
 				<img  class="banner_img"  src="img/home_banner4.png" />
-			</div>			
-		</div>		
+			</div>
+		</div>
 		<!--关于我们-->
 		<div class="about_body">
 			<div class="container">
@@ -96,7 +96,7 @@
 		</div>
 		<
 
-		
+
 		<div class="footer">
 			<div class="container">
 				<div class="f_top">
@@ -144,7 +144,7 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer_extra">
@@ -154,7 +154,7 @@
 					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
 			</div>
 			</div>
-			
+
 		</div>
 
 	</body>
@@ -162,12 +162,12 @@
 		$(document).ready(function(){
 			var name = sessionStorage.getItem("userName");
 			if (name!=null){
-				$("admin_user").html(name);
-				$("loginBefore").hide();
-				$("loginAfter").show();
+				$("#admin_user").html(name);
+				$("#loginBefore").hide();
+				$("#loginAfter").show();
 			}else {
-				$("loginAfter").hide();
-				$("loginBefore").show();
+				$("#loginAfter").hide();
+				$("#loginBefore").show();
 			}
 
 			$("#btn_Login").click(function(){

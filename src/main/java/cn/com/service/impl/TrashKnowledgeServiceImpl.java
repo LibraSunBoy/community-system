@@ -41,6 +41,15 @@ public class TrashKnowledgeServiceImpl implements TrashKnowledgeService {
     }
 
     @Override
+    public Result<List<TrashKnowledge>> getByTypeId(Integer id) {
+        TrashKnowledgeExample example = new TrashKnowledgeExample();
+        TrashKnowledgeExample.Criteria criteria = example.createCriteria();
+        criteria.andTrashTypeIdEqualTo(id);
+        List<TrashKnowledge> memberList = trashKnowledgeMapper.selectByExample(example);
+        return new Result<>().success(memberList);
+    }
+
+    @Override
     public void add(TrashKnowledge trashKnowledge) {
         dealForeignKey(trashKnowledge);
         trashKnowledge.setCreateDate(new Date());

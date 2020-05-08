@@ -14,6 +14,9 @@ public interface TrashService {
      */
     Result<List<Trash>> query(Integer pageNum, Integer pageSize,String number,String capacity,String location);
 
+    Result<List<Trash>> findList(Integer communityId,Integer status,Integer trashTypeId);
+
+//    Result<List<Trash>>  getLocation();
     /**
      * 添加
      * @param trash

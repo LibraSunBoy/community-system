@@ -32,14 +32,14 @@
 				</ul>
 				<div class="login_right">
                     <div id="loginBefore">
-                        <a href="login.html">登录</a>  
+                        <a href="login.html">登录</a>
                         <span>/</span>
                         <a href="register.html">注册</a>
                     </div>
 					<div id="loginAfter">
-						<a href="login.html" id="admin_user"></a>
+						用户名：<a href="user_info.html" id="admin_user"></a>
 					</div>
-               </div>				
+               </div>
 			</div>
 		</header>
 		<div class="login_content">
@@ -122,7 +122,7 @@
 						</li>
 					</ul>
 				</div>
-				
+
 			</div>
 		</div>
 		<div class="footer_extra">
@@ -132,19 +132,19 @@
 					<p>Copyright 2004-2019 classify.com Inc.All Right Reserved</p>
 			</div>
 			</div>
-			
+
 		</div>
 	</body>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var name = sessionStorage.getItem("userName");
 			if (name!=null){
-				$("admin_user").html(name);
-				$("loginBefore").hide();
-				$("loginAfter").show();
+				$("#admin_user").html(name);
+				$("#loginBefore").hide();
+				$("#loginAfter").show();
 			}else {
-				$("loginAfter").hide();
-				$("loginBefore").show();
+				$("#loginAfter").hide();
+				$("#loginBefore").show();
 			}
 
 			$("#btn_Login").click(function(){

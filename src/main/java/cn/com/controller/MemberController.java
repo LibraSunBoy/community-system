@@ -1,5 +1,6 @@
 package cn.com.controller;
 
+import cn.com.entity.ExamScore;
 import cn.com.entity.Member;
 import cn.com.exception.CustomException;
 import cn.com.service.MemberService;
@@ -49,6 +50,13 @@ public class MemberController {
                                       @RequestParam(value = "mobile",required=false) String mobile){
         Result<List<Member>> list = memberService.query(pageNum, pageSize, nickName,mobile);
         return list;
+    }
+
+    @PostMapping("/getById")
+    @ResponseBody
+    public Result<Member> getById(@RequestParam(value = "id")Integer id){
+        Member list = memberService.getById(id);
+        return new Result<>().success(list);
     }
 
     @PostMapping("/remove")

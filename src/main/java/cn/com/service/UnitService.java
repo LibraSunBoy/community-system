@@ -13,6 +13,10 @@ public interface UnitService {
      */
     Result<List<Unit>> query(Integer pageNum, Integer pageSize, String name, Integer floor, String location);
 
+    Result<List<Unit>> getByCommunityId(Integer communityId,String name);
+
+    Unit getById(Integer id);
+
     /**
      * 添加
      * @param unit
